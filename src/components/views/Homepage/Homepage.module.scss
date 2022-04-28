@@ -1,0 +1,68 @@
+.root {
+  width: 100%;
+
+  .header {
+    position: relative;
+    text-align: center;
+    height: 50rem;
+    background-color: #c9d6df;
+    overflow: hidden;
+    background-image: url("../../../../public/images/headerImage.jpg");
+    background-size: cover;
+
+    .banner {
+      position: relative;
+      height: 100%;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+
+      .bannerText {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: fit-content;
+        margin: 0 auto;
+        font-size: 5rem;
+        color: white;
+
+        span {
+          font-style: italic;
+          font-weight: lighter;
+          font-size: 4rem;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          height: 0.2rem;
+          width: 90%;
+          bottom: -0.5rem;
+          left: 50%;
+          transform: translateX(-50%);
+          background-color: #000;
+        }
+      }
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      height: 4rem;
+      width: 30rem;
+      bottom: 2rem;
+      left: -7rem;
+      transform: rotate(30deg);
+      background-color: #000;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      height: 4rem;
+      width: 30rem;
+      bottom: 2rem;
+      right: -7rem;
+      transform: rotate(-30deg);
+      background-color: #000;
+    }
+  }
+}

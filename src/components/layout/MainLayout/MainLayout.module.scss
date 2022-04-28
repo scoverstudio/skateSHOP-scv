@@ -1,0 +1,76 @@
+@import "../../../styles/global.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+section {
+  margin: 0 auto 100px;
+}
+
+.root {
+  font-family: "Montserrat", sans-serif;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  .navigation {
+    width: 100%;
+    background-color: #1e2022;
+
+    .navContent {
+      display: flex;
+      justify-content: space-between;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 15px 50px;
+
+      a {
+        text-decoration: none;
+
+        .logo {
+          font-size: 28px;
+          color: #f0f5f9;
+          font-weight: bold;
+        }
+      }
+      .routes {
+        ul {
+          li {
+            a {
+              display: flex;
+              justify-content: flex-end;
+              align-items: center;
+              list-style: none;
+              color: #f0f5f9;
+              text-decoration: none;
+
+              .cartIcon {
+                font-size: 2.5rem;
+                padding: 5px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  footer {
+    width: 100%;
+    background-color: #1e2022;
+    // box-shadow: 25px 25px 25px 25px #1e2022;
+    p {
+      text-align: center;
+      font-size: 1.5rem;
+      padding: 15px;
+      color: #f0f5f9;
+    }
+  }
+}
