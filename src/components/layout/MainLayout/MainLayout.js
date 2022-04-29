@@ -9,6 +9,19 @@ const MainLayout = ({ children }) => {
   return (
     <div className={styles.root}>
       <nav className={styles.navigation}>
+        <div className={styles.topBar}>
+          <div className={styles.info}>
+            <Link to="/help">help</Link>
+            <Link to="/contact">contact</Link>
+            <Link to="/about">about us</Link>
+          </div>
+          <div className={styles.freeDelivery}>
+            <Link to="/cart">Free delivery from 50$</Link>
+          </div>
+          <div className={styles.return}>
+            <Link to="/cart">returns and complaints</Link>
+          </div>
+        </div>
         <div className={styles.navContent}>
           <Link to="/">
             <h1 className={styles.logo}>SkateSHOP</h1>
@@ -21,6 +34,7 @@ const MainLayout = ({ children }) => {
                     className={styles.cartIcon}
                     icon={faCartShopping}
                   />
+                  <span className={styles.cartValue}>1</span>
                 </Link>
               </li>
             </ul>

@@ -1,0 +1,27 @@
+.slick-list {
+  margin: 0 -10px;
+}
+.slick-slide > div {
+  padding: 0 10px;
+}
+
+.slick-prev {
+  left: 3%;
+  background-color: white;
+  transform: rotate(135deg);
+  z-index: 1;
+}
+
+.slick-next {
+  right: 3%;
+  transform: rotate(-45deg);
+}
+
+.slick-prev:before,
+.slick-next:before {
+  content: "";
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}

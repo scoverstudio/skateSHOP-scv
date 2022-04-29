@@ -24,12 +24,29 @@ section {
     width: 100%;
     background-color: #1e2022;
 
+    .topBar {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px;
+      background-color: #26292c;
+      div {
+        a {
+          color: #f0f5f9;
+          font-size: 1.2rem;
+          margin-right: 5px;
+          text-transform: uppercase;
+          text-decoration: none;
+          border-bottom: 1px solid #f0f5f9;
+        }
+      }
+    }
+
     .navContent {
       display: flex;
       justify-content: space-between;
       max-width: 1400px;
       margin: 0 auto;
-      padding: 15px 50px;
+      padding: 20px 20px;
 
       a {
         text-decoration: none;
@@ -43,11 +60,12 @@ section {
       .routes {
         ul {
           li {
+            list-style: none;
             a {
+              position: relative;
               display: flex;
               justify-content: flex-end;
               align-items: center;
-              list-style: none;
               color: #f0f5f9;
               text-decoration: none;
 
@@ -55,6 +73,31 @@ section {
                 font-size: 2.5rem;
                 padding: 5px;
               }
+
+              .cartValue {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: absolute;
+                top: -0.5rem;
+                right: -0.5rem;
+                height: 2.2rem;
+                width: 2.2rem;
+                border-radius: 50%;
+                background-color: black;
+                font-size: 1.2rem;
+              }
+
+              // &::after {
+              //   content: "";
+              //   position: absolute;
+              //   top: -0.5rem;
+              //   right: -0.5rem;
+              //   height: 2rem;
+              //   width: 2rem;
+              //   border-radius: 50%;
+              //   background-color: black;
+              // }
             }
           }
         }

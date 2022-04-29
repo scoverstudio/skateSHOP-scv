@@ -48,6 +48,9 @@ const initialState = {
       price: 55,
     },
   ],
+  cart: {
+    products: [],
+  },
 };
 
 export default initialState;
