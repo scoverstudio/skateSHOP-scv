@@ -6,6 +6,7 @@ import { store } from "./redux/store";
 
 import MainLayout from "./components/layout/MainLayout/MainLayout";
 import Homepage from "./components/views/Homepage/Homepage";
+import Cart from "./components/views/Cart/Cart";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <MainLayout>
           <Routes>
             <Route path="/" element={<Homepage />} />
+            <Route path="/cart" element={<Cart />} />
           </Routes>
         </MainLayout>
       </Router>

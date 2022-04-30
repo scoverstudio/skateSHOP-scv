@@ -4,8 +4,12 @@ import styles from "./MainLayout.module.scss";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
+import { getCount } from "../../../redux/cartRedux";
 
 const MainLayout = ({ children }) => {
+  const productsInCart = useSelector(getCount);
+
   return (
     <div className={styles.root}>
       <nav className={styles.navigation}>
@@ -34,7 +38,7 @@ const MainLayout = ({ children }) => {
                     className={styles.cartIcon}
                     icon={faCartShopping}
                   />
-                  <span className={styles.cartValue}>1</span>
+                  <span className={styles.cartValue}>{productsInCart}</span>
                 </Link>
               </li>
             </ul>
