@@ -79,8 +79,7 @@ const Products = () => {
                 )}
                 <div className={styles.control}>
                   <Button
-                    onClickAction={handleProductAdd}
-                    product={product}
+                    onClick={() => handleProductAdd(product)}
                     text="Add to cart"
                   />
                   <Button text="Details" />

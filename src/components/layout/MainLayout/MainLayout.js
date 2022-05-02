@@ -28,23 +28,23 @@ const MainLayout = ({ children }) => {
                 <Link to="/cart">returns and complaints</Link>
               </div>
             </div>
-            <div className={styles.navContent}>
-              <Link to="/">
-                <h1 className={styles.logo}>SkateSHOP</h1>
-              </Link>
-              <div className={styles.routes}>
-                <ul>
-                  <li>
-                    <Link to="/cart">
-                      <FontAwesomeIcon
-                        className={styles.cartIcon}
-                        icon={faCartShopping}
-                      />
-                      <span className={styles.cartValue}>{productsInCart}</span>
-                    </Link>
-                  </li>
-                </ul>
-              </div>
+          </div>
+          <div className={styles.navContent}>
+            <Link to="/">
+              <h1 className={styles.logo}>SkateSHOP</h1>
+            </Link>
+            <div className={styles.routes}>
+              <ul>
+                <li>
+                  <Link to="/cart">
+                    <FontAwesomeIcon
+                      className={styles.cartIcon}
+                      icon={faCartShopping}
+                    />
+                    <span className={styles.cartValue}>{productsInCart}</span>
+                  </Link>
+                </li>
+              </ul>
             </div>
           </div>
         </div>

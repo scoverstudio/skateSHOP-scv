@@ -1,10 +1,11 @@
 import React from "react";
 import styles from "./Button.module.scss";
 import PropTypes from "prop-types";
+import clsx from "clsx";
 
-const Button = ({ text, onClickAction, product }) => {
+const Button = ({ text, onClick, style }) => {
   return (
-    <button onClick={() => onClickAction(product)} className={styles.button}>
+    <button onClick={onClick} className={clsx(styles.button, style)}>
       {text}
     </button>
   );
@@ -12,7 +13,7 @@ const Button = ({ text, onClickAction, product }) => {
 
 Button.propTypes = {
   text: PropTypes.string,
-  onClickAction: PropTypes.func,
-  product: PropTypes.object,
+  onClick: PropTypes.func,
+  style: PropTypes.string,
 };
 export default Button;

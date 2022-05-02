@@ -1,95 +1,214 @@
 .root {
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
 
   .cartTitle {
     position: relative;
     font-size: 4rem;
-    padding: 2rem;
+    padding: 2rem 4rem;
     font-weight: 400;
   }
-  .cartContainer {
-    .cartProduct {
-      position: relative;
+  .container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .cartContainer {
       display: flex;
-      padding: 2rem 0;
-      margin: 2rem;
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 100%;
+      border-right: 1px solid rgb(220, 220, 220);
 
-      .productImage {
-        .image {
-          width: 15rem;
-        }
-      }
+      .cartProduct {
+        position: relative;
+        display: flex;
+        padding: 2rem 0;
+        margin: 2rem;
+        width: 100%;
 
-      .productContent {
-        margin-left: 3rem;
-        .productName {
-          font-size: 2.5rem;
-          font-weight: 500;
-          margin-bottom: 1rem;
-        }
-        span {
-          font-weight: 600;
-          display: block;
-          margin-bottom: 1.5rem;
-          color: #ec0000;
-        }
-
-        .productInfo {
-          font-size: 1.2rem;
-          p {
-            margin-bottom: 0.2rem;
+        .productImage {
+          .image {
+            width: 15rem;
           }
         }
-      }
 
-      &::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        height: 0.1rem;
-        width: 100%;
-        background-color: rgb(220, 220, 220);
-      }
+        .productContent {
+          position: relative;
+          margin-left: 3rem;
 
-      .productControl {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        position: absolute;
-        right: 1rem;
-        height: 22rem;
+          .productName {
+            font-size: 2.5rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+          }
+          .orderDeliveryTime {
+            font-weight: 600;
+            display: block;
+            font-size: 1.2rem;
 
-        .quantity {
-          width: 100%;
-          display: flex;
+            margin-bottom: 1.5rem;
+            color: #ec0000;
+          }
 
-          .button1,
-          .button2 {
-            border: solid 1px;
-            margin: 0;
-            color: black;
-
-            &:hover {
-              text-decoration: none;
+          .productInfo {
+            font-size: 1.5rem;
+            p {
+              margin-bottom: 0.2rem;
             }
           }
-          input {
-            border: 0.1rem solid rgb(220, 220, 220);
-            margin: 0 0.5rem;
-            height: 100%;
-            width: 4.5rem;
+
+          .productActions {
+            display: flex;
+            position: absolute;
+            bottom: 0;
+            padding: 1rem 0;
+            color: #999;
+            cursor: pointer;
+            font-size: 1.2rem;
+
+            .icon {
+              padding: 0.2rem;
+              line-height: 2rem;
+            }
+
+            .productRemove {
+              display: flex;
+              border-right: 1px solid #999;
+              padding-right: 1rem;
+              margin-right: 1rem;
+
+              h4 {
+                margin-left: 0.3rem;
+                font-weight: 500;
+              }
+
+              &:hover {
+                color: black;
+              }
+            }
+
+            .productFavorite {
+              display: flex;
+
+              h4 {
+                margin-left: 0.3rem;
+                font-weight: 500;
+              }
+
+              &:hover {
+                color: black;
+              }
+            }
           }
         }
 
-        .price {
-          text-align: center;
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          height: 0.1rem;
           width: 100%;
-          font-size: 2rem;
-          font-weight: 600;
+          background-color: rgb(220, 220, 220);
         }
+
+        .productControl {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: center;
+          position: absolute;
+          right: 1rem;
+          height: 22rem;
+
+          .quantity {
+            width: 100%;
+            display: flex;
+
+            .button1,
+            .button2 {
+              border: solid 1px;
+              margin: 0;
+              color: black;
+
+              &:hover {
+                text-decoration: none;
+              }
+            }
+            input {
+              border: 0.1rem solid rgb(220, 220, 220);
+              margin: 0 0.5rem;
+              height: 100%;
+              width: 4.5rem;
+              padding: 0.5rem;
+              text-align: center;
+            }
+
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
+            }
+          }
+
+          .price {
+            text-align: center;
+            width: 100%;
+            font-size: 2rem;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+    .summary {
+      display: flex;
+      flex-direction: column;
+      width: 45%;
+      margin: 0 auto;
+
+      h3 {
+        text-align: center;
+        padding: 15px 0;
+        font-size: 2.5rem;
+        font-weight: bolder;
+      }
+
+      .subtotal,
+      .total {
+        margin: 0 3rem;
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        h5,
+        p {
+          font-size: 14px;
+          margin-bottom: 0;
+        }
+      }
+      .checkout {
+        margin: 2rem 2rem 0;
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .root {
+    .container {
+      flex-wrap: nowrap;
+      .cartContainer {
+        .cartProduct {
+          flex-grow: 1;
+        }
+      }
+      .summary {
+        max-width: 40%;
+        margin: 0;
       }
     }
   }
