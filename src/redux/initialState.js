@@ -36,7 +36,7 @@ const initialState = {
       name: "Deck Element Section",
       industry: "Element Skateboards",
       category: "deck",
-      size: "8''",
+      size: "8.5''",
       price: 120,
     },
     {

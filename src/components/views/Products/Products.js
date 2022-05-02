@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "react-alice-carousel/lib/alice-carousel.css";
 
 import { getAllProducts } from "../../../redux/productsRedux";
@@ -8,8 +8,11 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./Products.css";
+import Button from "../../common/Button/Button";
+import { addProduct } from "../../../redux/cartRedux";
 
 const Products = () => {
+  const dispatch = useDispatch();
   const products = useSelector((state) => getAllProducts(state));
 
   const settings = {
@@ -48,6 +51,10 @@ const Products = () => {
     ],
   };
 
+  const handleProductAdd = (product) => {
+    dispatch(addProduct(product));
+  };
+
   return (
     <section className={styles.root}>
       <h3>
@@ -70,6 +77,14 @@ const Products = () => {
                     <p className={styles.boardSize}>{product.size}</p>
                   </div>
                 )}
+                <div className={styles.control}>
+                  <Button
+                    onClickAction={handleProductAdd}
+                    product={product}
+                    text="Add to cart"
+                  />
+                  <Button text="Details" />
+                </div>
               </div>
             </div>
           </div>

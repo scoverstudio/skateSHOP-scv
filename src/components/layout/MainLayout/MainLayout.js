@@ -4,8 +4,12 @@ import styles from "./MainLayout.module.scss";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
+import { getCount } from "../../../redux/cartRedux";
 
 const MainLayout = ({ children }) => {
+  const productsInCart = useSelector(getCount);
+
   return (
     <div className={styles.root}>
       <nav className={styles.navigation}>
@@ -24,23 +28,23 @@ const MainLayout = ({ children }) => {
                 <Link to="/cart">returns and complaints</Link>
               </div>
             </div>
-          </div>
-          <div className={styles.navContent}>
-            <Link to="/">
-              <h1 className={styles.logo}>SkateSHOP</h1>
-            </Link>
-            <div className={styles.routes}>
-              <ul>
-                <li>
-                  <Link to="/cart">
-                    <FontAwesomeIcon
-                      className={styles.cartIcon}
-                      icon={faCartShopping}
-                    />
-                    <span className={styles.cartValue}>1</span>
-                  </Link>
-                </li>
-              </ul>
+            <div className={styles.navContent}>
+              <Link to="/">
+                <h1 className={styles.logo}>SkateSHOP</h1>
+              </Link>
+              <div className={styles.routes}>
+                <ul>
+                  <li>
+                    <Link to="/cart">
+                      <FontAwesomeIcon
+                        className={styles.cartIcon}
+                        icon={faCartShopping}
+                      />
+                      <span className={styles.cartValue}>{productsInCart}</span>
+                    </Link>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
