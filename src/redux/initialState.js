@@ -69,9 +69,13 @@ const initialState = {
         color: "black",
         gender: "unisex",
         price: 55,
+        totalPrice: 55,
         quantity: 1,
       },
     ],
+    subtotal: 0,
+    freeDelivery: 150,
+    deliveryCost: 20,
   },
 };
 

@@ -52,7 +52,9 @@ const Products = () => {
   };
 
   const handleProductAdd = (product) => {
-    dispatch(addProduct(product));
+    dispatch(
+      addProduct({ ...product, totalPrice: product.price, quantity: 1 })
+    );
   };
 
   return (

@@ -2,20 +2,24 @@ import { faHeart, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import {
   clearCart,
   decrement,
   getAllProductsInCart,
+  getFreeDeliveryPrice,
+  getSubtotalPrice,
   increment,
   removeProduct,
+  totalPriceChange,
 } from "../../../redux/cartRedux";
 import Button from "../../common/Button/Button";
 import styles from "./Cart.module.scss";
 
 const Cart = () => {
-  const cartProducts = useSelector(getAllProductsInCart);
   const dispatch = useDispatch();
+  const cartProducts = useSelector(getAllProductsInCart);
+  const subtotal = useSelector(getSubtotalPrice);
+  const freeDeliveryPrice = useSelector(getFreeDeliveryPrice);
 
   const handleProductRemove = (id) => {
     dispatch(removeProduct(id));
@@ -29,12 +33,14 @@ const Cart = () => {
     if (quantity < 10 && quantity >= 1) {
       dispatch(increment(id));
     }
+    dispatch(totalPriceChange(id));
   };
 
   const decrementQuantity = (id, quantity) => {
     if (quantity > 1 && quantity <= 10) {
       dispatch(decrement(id));
     }
+    dispatch(totalPriceChange(id));
   };
 
   return (
@@ -117,11 +123,22 @@ const Cart = () => {
           <h3 style={{ color: "black" }}>Cart totals</h3>
           <div className={styles.subtotal}>
             <h5>Subtotal</h5>
-            <p>$ 0</p>
+            <p>$ {subtotal}</p>
           </div>
           <div className={styles.total}>
             <h5>Total</h5>
-            <p>$ 20</p>
+
+            {subtotal >= freeDeliveryPrice ? (
+              <div className={styles.totalPriceContainer}>
+                <p className={styles.discountDelivery}>$ {subtotal + 20}</p>
+                <p className={styles.totalPrice}>$ {subtotal}</p>
+              </div>
+            ) : (
+              <p>$ {subtotal + 20}</p>
+            )}
+          </div>
+          <div className={styles.freeDelivery}>
+            {subtotal >= freeDeliveryPrice ? <span>Delivery free!</span> : ""}
           </div>
           <Button
             onClick={() => clearProductsFromCart()}
