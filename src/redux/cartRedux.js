@@ -35,7 +35,10 @@ export const totalPriceChange = (payload) => ({
 export const cartReducer = (statePart = [], action = {}) => {
   switch (action.type) {
     case ADD_PRODUCT: {
-      return { products: [...statePart.products, action.payload] };
+      return {
+        ...statePart,
+        products: [...statePart.products, action.payload],
+      };
     }
     case REMOVE_PRODUCT: {
       return {

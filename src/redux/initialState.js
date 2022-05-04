@@ -59,24 +59,12 @@ const initialState = {
     },
   ],
   cart: {
-    products: [
-      {
-        id: "Deck-Element-Section",
-        name: "Deck Element Section",
-        producer: "Element Skateboards",
-        category: "deck",
-        size: "8.0''",
-        color: "black",
-        gender: "unisex",
-        price: 55,
-        totalPrice: 55,
-        quantity: 1,
-      },
-    ],
+    products: [],
     subtotal: 0,
     freeDelivery: 150,
     deliveryCost: 20,
   },
+  orders: {},
 };
 
 export default initialState;

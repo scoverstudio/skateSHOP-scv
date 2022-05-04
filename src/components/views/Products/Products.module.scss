@@ -2,11 +2,10 @@
   max-width: 1400px;
   h3 {
     position: relative;
-    margin: 0 auto;
+    margin: 5rem auto;
     width: fit-content;
     font-weight: 500;
     font-size: 3rem;
-    margin-bottom: 5rem;
 
     &::after {
       content: "";

@@ -1,0 +1,98 @@
+.root {
+  width: 100%;
+  h2 {
+    padding: 2rem 4rem;
+  }
+
+  .orderForm {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+
+    .shipmentInfo {
+      border-right: 1px solid rgb(220, 220, 220);
+    }
+
+    div {
+      width: 50%;
+    }
+
+    h3 {
+      text-align: center;
+      padding: 1rem;
+      font-size: 2rem;
+      font-weight: 600;
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+
+    fieldset {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+      flex-wrap: wrap;
+      border: none;
+      padding: 0 5rem;
+
+      input {
+        width: 48%;
+        padding: 0.5rem 1.5rem;
+        margin-bottom: 2rem;
+        font-size: 1.6rem;
+        border: 1px solid black;
+      }
+
+      label {
+        padding-left: 1.5rem;
+        font-size: 1.2rem;
+        font-weight: 600;
+        width: 50%;
+        margin-bottom: 0.5rem;
+      }
+
+      .threeInRowContainer {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+
+        label {
+          width: 32%;
+        }
+
+        input {
+          width: 32%;
+        }
+      }
+    }
+
+    .methods {
+      div {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        flex-direction: column;
+        width: 90%;
+        height: 50%;
+        margin: 0 auto;
+
+        &:first-child {
+          border-bottom: 1px solid rgb(220, 220, 220);
+        }
+      }
+      fieldset {
+        display: block;
+        input {
+          width: fit-content;
+        }
+
+        label {
+          font-size: 2rem;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+}

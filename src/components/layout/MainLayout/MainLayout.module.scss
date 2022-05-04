@@ -1,4 +1,5 @@
 @import "../../../styles/global.scss";
+@import "../../../styles/settings.scss";
 
 * {
   margin: 0;
@@ -17,7 +18,10 @@ body {
 }
 
 section {
-  margin: 0 auto 100px;
+  margin: 0 auto;
+  max-width: 1500px;
+  padding-bottom: 10rem;
+  min-height: calc(100vh - $navHeight - $footerHeigth);
 }
 
 .root {
@@ -30,7 +34,8 @@ section {
   .navigation {
     width: 100%;
     background-color: #1e2022;
-    // 26292c
+    height: $navHeight;
+
     .navContainer {
       .topBarContainer {
         background-color: #26292c;
@@ -39,7 +44,7 @@ section {
         .topBarContent {
           display: flex;
           justify-content: space-between;
-          padding: 8px 20px;
+          padding: 0.8rem 2rem;
           margin: 0 auto;
           width: 100%;
           max-width: 1720px;
@@ -48,10 +53,10 @@ section {
             a {
               color: #f0f5f9;
               font-size: 1.2rem;
-              margin-right: 5px;
+              margin-right: 0.5rem;
               text-transform: uppercase;
               text-decoration: none;
-              border-bottom: 1px solid #f0f5f9;
+              border-bottom: 0.1rem solid #f0f5f9;
             }
           }
         }
@@ -61,14 +66,14 @@ section {
         display: flex;
         justify-content: space-between;
         margin: 0 auto;
-        padding: 20px 25px 20px 20px;
+        padding: 2rem 2.5rem 2rem;
         max-width: 1720px;
 
         a {
           text-decoration: none;
 
           .logo {
-            font-size: 28px;
+            font-size: 2.8rem;
             color: #f0f5f9;
             font-weight: bold;
           }
@@ -87,7 +92,7 @@ section {
 
                 .cartIcon {
                   font-size: 2.5rem;
-                  padding: 5px;
+                  padding: 0.5rem;
                 }
 
                 .cartValue {
@@ -122,17 +127,16 @@ section {
     }
   }
 
-
-
   footer {
     flex-shrink: 0;
+    height: $footerHeigth;
     width: 100%;
     background-color: #1e2022;
 
     p {
       text-align: center;
       font-size: 1.5rem;
-      padding: 15px;
+      padding: 1.5rem;
       color: #f0f5f9;
     }
   }
