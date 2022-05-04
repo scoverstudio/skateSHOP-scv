@@ -18,10 +18,11 @@ const CLEAR_CART = createActionName("CLEAR_CART");
 const INCREMENT = createActionName("INCREMENT");
 const DECREMENT = createActionName("DECREMENT");
 const TOTAL_PRICE_CHANGE = createActionName("TOTAL_PRICE_CHANGE");
-// const TOTAL_PRICE_DECREMENT = createActionName("TOTAL_PRICE_DECREMENT");
+const QUANTITY_CHANGE = createActionName("QUANTITY_CHANGE");
 
 /* action creators */
 export const addProduct = (payload) => ({ payload, type: ADD_PRODUCT });
+export const changeQuantity = (payload) => ({ payload, type: QUANTITY_CHANGE });
 export const removeProduct = (payload) => ({ payload, type: REMOVE_PRODUCT });
 export const clearCart = (payload) => ({ payload, type: CLEAR_CART });
 export const increment = (payload) => ({ payload, type: INCREMENT });
@@ -38,6 +39,18 @@ export const cartReducer = (statePart = [], action = {}) => {
       return {
         ...statePart,
         products: [...statePart.products, action.payload],
+      };
+    }
+    case QUANTITY_CHANGE: {
+      return {
+        ...statePart,
+        cart: [
+          ...statePart.products.find((product) =>
+            product.id === action.payload.id
+              ? product.quantity++
+              : product.quantity
+          ),
+        ],
       };
     }
     case REMOVE_PRODUCT: {

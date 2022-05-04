@@ -1,6 +1,6 @@
 import { faHeart, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
@@ -22,6 +22,8 @@ const Cart = () => {
   const subtotal = useSelector(getSubtotalPrice);
   const freeDeliveryPrice = useSelector(getFreeDeliveryPrice);
 
+  useEffect(() => {}, []);
+  
   const handleProductRemove = (id) => {
     dispatch(removeProduct(id));
   };

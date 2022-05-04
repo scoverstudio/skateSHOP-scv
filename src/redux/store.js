@@ -8,12 +8,14 @@ import thunk from "redux-thunk";
 import { cartReducer } from "./cartRedux";
 import { categoriesReducer } from "./categoriesRedux";
 import initialState from "./initialState";
+import { orderReducer } from "./ordersRedux";
 import { productsReducer } from "./productsRedux";
 
 const reducers = {
   categories: categoriesReducer,
   products: productsReducer,
   cart: cartReducer,
+  orders: orderReducer,
 };
 
 const combinedReducers = combineReducers(reducers);

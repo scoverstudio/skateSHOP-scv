@@ -64,7 +64,27 @@ const initialState = {
     freeDelivery: 150,
     deliveryCost: 20,
   },
-  orders: {},
+  orders: [
+    {
+      userInformations: {
+        name: "Krystian",
+        surname: "Matkowski",
+        email: "scv@gmail.com",
+        phoneNumber: "697740650",
+      },
+      shipmentInformations: {
+        name: "Krystian",
+        surname: "Matkowski",
+        country: "Poland",
+        region: "Dolny Slask",
+        street: "Kaczencowa",
+        building: "8",
+        apartament: null,
+        city: "Polkowice",
+        zipCode: "59-101",
+      },
+    },
+  ],
 };
 
 export default initialState;

@@ -95,4 +95,61 @@
       }
     }
   }
+
+  .orderSummary {
+    padding: 3rem 5rem;
+
+    h3 {
+      text-align: center;
+      font-size: 2rem;
+      padding: 2rem;
+    }
+    .orderedProducts {
+      display: flex;
+      flex-direction: column;
+
+      .descriptions {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        border-bottom: 1px solid rgb(220, 220, 220);
+
+        p {
+          width: 15%;
+          padding: 1rem;
+          font-size: 1.6rem;
+          font-weight: 600;
+          color: rgb(148, 148, 148);
+
+          &:first-child {
+            width: 70%;
+          }
+
+          &:nth-child(2),
+          &:nth-child(3) {
+            text-align: center;
+          }
+        }
+      }
+
+      .singleProduct {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid rgb(238, 238, 238);
+
+        h4 {
+          width: 70%;
+          font-size: 1.4rem;
+          padding: 1rem;
+          font-weight: 500;
+        }
+        span {
+          width: 15%;
+          font-size: 1.4rem;
+          text-align: center;
+          padding: 1rem;
+        }
+      }
+    }
+  }
 }

@@ -9,11 +9,17 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./Products.css";
 import Button from "../../common/Button/Button";
-import { addProduct } from "../../../redux/cartRedux";
+import {
+  addProduct,
+  getAllProductsInCart,
+  increment,
+  totalPriceChange,
+} from "../../../redux/cartRedux";
 
 const Products = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => getAllProducts(state));
+  const cartProducts = useSelector((state) => getAllProductsInCart(state));
 
   const settings = {
     dots: false,
@@ -52,9 +58,23 @@ const Products = () => {
   };
 
   const handleProductAdd = (product) => {
-    dispatch(
-      addProduct({ ...product, totalPrice: product.price, quantity: 1 })
+    const productAlreadyInCart = cartProducts.find(
+      (item) => item.id === product.id
     );
+
+    if (productAlreadyInCart) {
+      if (
+        productAlreadyInCart.quantity < 10 &&
+        productAlreadyInCart.quantity >= 1
+      ) {
+        dispatch(increment(product.id));
+        dispatch(totalPriceChange(product.id));
+      }
+    } else {
+      dispatch(
+        addProduct({ ...product, totalPrice: product.price, quantity: 1 })
+      );
+    }
   };
 
   return (

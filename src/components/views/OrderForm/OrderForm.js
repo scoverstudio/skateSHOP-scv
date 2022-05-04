@@ -1,5 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
+import { getAllProductsInCart } from "../../../redux/cartRedux";
 import styles from "./OrderForm.module.scss";
 
 const OrderForm = () => {
@@ -9,6 +11,7 @@ const OrderForm = () => {
     watch,
     formState: { errors },
   } = useForm();
+  const cartProducts = useSelector((state) => getAllProductsInCart(state));
 
   const onSubmit = (data) => {};
 
@@ -90,6 +93,23 @@ const OrderForm = () => {
           </div>
         </div>
       </form>
+      <div className={styles.orderSummary}>
+        <h3>Order Summary</h3>
+        <div className={styles.orderedProducts}>
+          <div className={styles.descriptions}>
+            <p>Product</p>
+            <p>Quantity</p>
+            <p>Cost</p>
+          </div>
+          {cartProducts.map((product) => (
+            <div className={styles.singleProduct} key={product.id}>
+              <h4>{product.name}</h4>
+              <span>{product.quantity}</span>
+              <span>$ {product.price * product.quantity}</span>
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 };
