@@ -1,6 +1,6 @@
 import { faHeart, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
@@ -17,20 +17,17 @@ import Button from "../../common/Button/Button";
 import styles from "./Cart.module.scss";
 
 const Cart = () => {
+  const [ifEmpty, setIfEmpty] = useState(false);
   const dispatch = useDispatch();
   const cartProducts = useSelector(getAllProductsInCart);
   const subtotal = useSelector(getSubtotalPrice);
   const freeDeliveryPrice = useSelector(getFreeDeliveryPrice);
 
   useEffect(() => {}, []);
-  
+
   const handleProductRemove = (id) => {
     dispatch(removeProduct(id));
   };
-
-  // const clearProductsFromCart = () => {
-  //   dispatch(clearCart([]));
-  // };
 
   const incrementQuantity = (id, quantity) => {
     if (quantity < 10 && quantity >= 1) {
@@ -46,15 +43,23 @@ const Cart = () => {
     dispatch(totalPriceChange(id));
   };
 
+  const checkIfEmpty = (length) => {
+    if (length === 0) {
+      setIfEmpty(true);
+    } else {
+      setIfEmpty(false);
+    }
+  };
+
   return (
     <section className={styles.root}>
       <h2 className={styles.cartTitle}>Your cart</h2>
-      <div className={styles.container}>
-        <div className={styles.cartContainer}>
-          {cartProducts.length === 0 ? (
-            <div className={styles.emptyCart}>Your cart is empty!</div>
-          ) : (
-            cartProducts.map((cartProduct) => (
+      {cartProducts.length === 0 ? (
+        <div className={styles.emptyCart}>Your cart is empty!</div>
+      ) : (
+        <div className={styles.container}>
+          <div className={styles.cartContainer}>
+            {cartProducts.map((cartProduct) => (
               <div className={styles.cartProduct} key={cartProduct.id}>
                 <div className={styles.productImage}>
                   <img
@@ -123,39 +128,42 @@ const Cart = () => {
                   </div>
                 </div>
               </div>
-            ))
-          )}
-        </div>
-        <div className={styles.summary}>
-          <h3 style={{ color: "black" }}>Cart totals</h3>
-          <div className={styles.subtotal}>
-            <h5>Subtotal</h5>
-            <p>$ {subtotal}</p>
+            ))}
           </div>
-          <div className={styles.total}>
-            <h5>Total</h5>
+          <div className={styles.summary}>
+            <h3 style={{ color: "black" }}>Cart totals</h3>
+            <div className={styles.subtotal}>
+              <h5>Subtotal</h5>
+              <p>$ {subtotal}</p>
+            </div>
+            <div className={styles.total}>
+              <h5>Total</h5>
 
-            {subtotal >= freeDeliveryPrice ? (
-              <div className={styles.totalPriceContainer}>
-                <p className={styles.discountDelivery}>$ {subtotal + 20}</p>
-                <p className={styles.totalPrice}>$ {subtotal}</p>
-              </div>
-            ) : (
-              <p>$ {subtotal + 20}</p>
+              {subtotal >= freeDeliveryPrice ? (
+                <div className={styles.totalPriceContainer}>
+                  <p className={styles.discountDelivery}>$ {subtotal + 20}</p>
+                  <p className={styles.totalPrice}>$ {subtotal}</p>
+                </div>
+              ) : (
+                <p>$ {subtotal + 20}</p>
+              )}
+            </div>
+            <div className={styles.freeDelivery}>
+              {subtotal >= freeDeliveryPrice ? <span>Delivery free!</span> : ""}
+            </div>
+            <Link to={cartProducts.length !== 0 ? "/order" : "/cart"}>
+              <Button
+                onClick={() => checkIfEmpty(cartProducts.length)}
+                style={styles.checkout}
+                text="PROCCED TO CHECKOUT"
+              />
+            </Link>
+            {ifEmpty && (
+              <div className={styles.ifEmpty}>Add items to continue!</div>
             )}
           </div>
-          <div className={styles.freeDelivery}>
-            {subtotal >= freeDeliveryPrice ? <span>Delivery free!</span> : ""}
-          </div>
-          <Link to="/order">
-            <Button
-              // onClick={() => clearProductsFromCart()}
-              style={styles.checkout}
-              text="PROCCED TO CHECKOUT"
-            />
-          </Link>
         </div>
-      </div>
+      )}
     </section>
   );
 };

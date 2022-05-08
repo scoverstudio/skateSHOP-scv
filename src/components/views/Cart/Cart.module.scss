@@ -6,6 +6,14 @@
   max-width: 1500px;
   margin: 0 auto;
 
+  .emptyCart {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6rem;
+  }
+
   .container {
     display: flex;
     flex-direction: row;
@@ -17,14 +25,6 @@
       flex-wrap: wrap;
       width: 100%;
       border-right: 1px solid rgb(220, 220, 220);
-
-      .emptyCart {
-        display: flex;
-        width: 100%;
-        justify-content: center;
-        align-items: center;
-        font-size: 1.6rem;
-      }
 
       .cartProduct {
         position: relative;

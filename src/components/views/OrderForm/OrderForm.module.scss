@@ -1,5 +1,6 @@
 .root {
   width: 100%;
+  margin: 0 auto;
   h2 {
     padding: 2rem 4rem;
   }
@@ -10,8 +11,17 @@
     justify-content: space-between;
     flex-wrap: nowrap;
 
+    .required {
+      font-size: 1.4rem;
+    }
+
     .shipmentInfo {
       border-right: 1px solid rgb(220, 220, 220);
+
+      .requiredInformation {
+        padding: 0 5rem;
+        font-size: 1.4rem;
+      }
     }
 
     div {
@@ -41,6 +51,15 @@
         margin-bottom: 2rem;
         font-size: 1.6rem;
         border: 1px solid black;
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      .errorInput::placeholder {
+        color: rgba(255, 0, 0, 0.8);
+        font-size: 1.2rem;
       }
 
       label {
@@ -150,6 +169,24 @@
           padding: 1rem;
         }
       }
+    }
+  }
+
+  .control {
+    text-align: center;
+    width: 100%;
+    padding: 5rem;
+
+    button {
+      width: 100%;
+      padding: 1rem 2rem 1rem 4rem;
+      border: none;
+      background-color: #1e2022;
+      color: #f0f5f9;
+      text-align: left;
+      font-size: 1.5rem;
+      font-weight: 600;
+      cursor: pointer;
     }
   }
 }
