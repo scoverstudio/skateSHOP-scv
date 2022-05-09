@@ -101,13 +101,33 @@
           border-bottom: 1px solid rgb(220, 220, 220);
         }
       }
-      fieldset {
-        display: block;
-        input {
-          width: fit-content;
+      .shippingMethod,
+      .paymentMethod {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+
+        .methodsContainer {
+          display: flex;
+          flex-direction: row;
         }
 
+        .methodError {
+          position: absolute;
+          bottom: 1rem;
+          font-size: 1.2rem;
+          padding: 1rem;
+          align-items: center;
+          color: rgba(255, 0, 0, 0.8);
+        }
+        input {
+          display: flex;
+          width: 10%;
+          height: 2rem;
+        }
         label {
+          width: 90%;
           font-size: 2rem;
           font-weight: 400;
         }
@@ -175,7 +195,7 @@
   .control {
     text-align: center;
     width: 100%;
-    padding: 5rem;
+    padding: 2rem 5rem;
 
     button {
       width: 100%;
@@ -188,5 +208,11 @@
       font-weight: 600;
       cursor: pointer;
     }
+  }
+
+  .orderStatus {
+    font-size: 1.5rem;
+    text-align: center;
+    color: rgba(255, 0, 0, 0.8);
   }
 }

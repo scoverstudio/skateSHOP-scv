@@ -14,6 +14,19 @@ const OrderForm = ({ orderRequest }) => {
   const [succesOrder, setSuccesOrder] = useState(false);
   const [failedOrder, setFailedOrder] = useState(false);
 
+  const [shipmentName, setShipmentName] = useState("");
+  const [shipmentSurname, setShipmentSurname] = useState("");
+  const [country, setCountry] = useState("");
+  const [region, setRegion] = useState("");
+  const [street, setStreet] = useState("");
+  const [building, setBuilding] = useState("");
+  const [apartament, setApartament] = useState("");
+  const [city, setCity] = useState("");
+  const [zipCode, setZipCode] = useState("");
+
+  const [shipmentMethod, setShipmentMethod] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("");
+
   const {
     register,
     handleSubmit,
@@ -23,6 +36,7 @@ const OrderForm = ({ orderRequest }) => {
   const cartProducts = useSelector((state) => getAllProductsInCart(state));
 
   const onSubmit = () => {
+    console.log("click");
     const order = {
       userInformations: {
         name: name,
@@ -31,15 +45,17 @@ const OrderForm = ({ orderRequest }) => {
         phoneNumber: phone,
       },
       shipmentInformations: {
-        name: "test",
-        surname: "test",
-        country: "test",
-        region: "test",
-        street: "test",
-        building: "test",
-        apartament: null,
-        city: "test",
-        zipCode: "test",
+        name: shipmentName,
+        surname: shipmentSurname,
+        country: country,
+        region: region,
+        street: street,
+        building: building,
+        apartament: apartament,
+        city: city,
+        zipCode: zipCode,
+        shipmentMethod,
+        paymentMethod,
       },
       items: {
         ...cartProducts,
@@ -159,30 +175,171 @@ const OrderForm = ({ orderRequest }) => {
           </fieldset>
           <fieldset>
             <h3>Shipment informations</h3>
-
-            <label htmlFor="Name">Name</label>
-            <label htmlFor="Surname">Surname</label>
-            <input type="text" placeholder="Name"></input>
-            <input type="text" placeholder="Surname"></input>
-
+            <label htmlFor="shipmentName">Name</label>
+            <label htmlFor="shipmentSurname">Surname</label>
+            <input
+              {...register("shipmentName", {
+                required: {
+                  value: true,
+                  message: "Name field is required",
+                },
+                minLength: {
+                  value: 3,
+                  message: "min. 3 characters",
+                },
+                maxLength: {
+                  value: 15,
+                  message: "max. 15 characters",
+                },
+              })}
+              type="text"
+              placeholder={
+                errors.shipmentName ? errors.shipmentName.message : "Name"
+              }
+              onChange={(e) => setShipmentName(e.target.value)}
+              className={clsx(errors.shipmentName && styles.errorInput)}
+            />
+            <input
+              {...register("shipmentSurname", {
+                required: {
+                  value: true,
+                  message: "Surname field is required",
+                },
+                minLength: {
+                  value: 3,
+                  message: "min. 3 characters",
+                },
+                maxLength: {
+                  value: 15,
+                  message: "max. 15 characters",
+                },
+              })}
+              type="text"
+              placeholder={
+                errors.shipmentSurname
+                  ? errors.shipmentSurname.message
+                  : "Surname"
+              }
+              onChange={(e) => setShipmentSurname(e.target.value)}
+              className={clsx(errors.shipmentSurname && styles.errorInput)}
+            />
             <label htmlFor="Country">Country</label>
             <label htmlFor="Region">Region</label>
-            <input type="text" placeholder="Country"></input>
-            <input type="text" placeholder="Region"></input>
-
+            <input
+              {...register("country", {
+                required: {
+                  value: true,
+                  message: "Country field is required",
+                },
+                minLength: {
+                  value: 3,
+                  message: "min. 3 characters",
+                },
+              })}
+              type="text"
+              placeholder={errors.country ? errors.country.message : "Country"}
+              onChange={(e) => setCountry(e.target.value)}
+              className={clsx(errors.country && styles.errorInput)}
+            />
+            <input
+              {...register("region", {
+                required: {
+                  value: true,
+                  message: "Region field is required",
+                },
+                minLength: {
+                  value: 3,
+                  message: "min. 3 characters",
+                },
+              })}
+              type="text"
+              placeholder={errors.region ? errors.region.message : "Region"}
+              onChange={(e) => setRegion(e.target.value)}
+              className={clsx(errors.region && styles.errorInput)}
+            />
             <div className={styles.threeInRowContainer}>
               <label htmlFor="Street">Street</label>
               <label htmlFor="Building">Building</label>
               <label htmlFor="Apartment">Apartment</label>
-              <input type="text" placeholder="Street"></input>
-              <input type="text" placeholder="Building"></input>
-              <input type="text" placeholder="Apartment"></input>
+              <input
+                {...register("street", {
+                  required: {
+                    value: true,
+                    message: "Street field is required",
+                  },
+                  minLength: {
+                    value: 3,
+                    message: "min. 3 characters",
+                  },
+                })}
+                type="text"
+                placeholder={errors.street ? errors.street.message : "Street"}
+                onChange={(e) => setStreet(e.target.value)}
+                className={clsx(errors.street && styles.errorInput)}
+              />
+              <input
+                {...register("building", {
+                  required: {
+                    value: true,
+                    message: "Building field is required",
+                  },
+                })}
+                type="text"
+                placeholder={
+                  errors.building ? errors.building.message : "Building"
+                }
+                onChange={(e) => setBuilding(e.target.value)}
+                className={clsx(errors.building && styles.errorInput)}
+              />
+              <input
+                {...register("apartament", {
+                  required: {
+                    value: true,
+                    message: "Apartament field is required",
+                  },
+                })}
+                type="text"
+                placeholder={
+                  errors.apartament ? errors.apartament.message : "Apartament"
+                }
+                onChange={(e) => setApartament(e.target.value)}
+                className={clsx(errors.apartament && styles.errorInput)}
+              />
             </div>
-
             <label htmlFor="City">City</label>
             <label htmlFor="ZIP code">ZIP code</label>
-            <input type="text" placeholder="City"></input>
-            <input type="text" placeholder="ZIP code"></input>
+            <input
+              {...register("city", {
+                required: {
+                  value: true,
+                  message: "City field is required",
+                },
+                minLength: {
+                  value: 3,
+                  message: "min. 3 characters",
+                },
+              })}
+              type="text"
+              placeholder={errors.city ? errors.city.message : "City"}
+              onChange={(e) => setCity(e.target.value)}
+              className={clsx(errors.city && styles.errorInput)}
+            />
+            <input
+              {...register("zipCode", {
+                required: {
+                  value: true,
+                  message: "Zip code field is required",
+                },
+                pattern: {
+                  value: /[0-9]{2}-[0-9]{3}/,
+                  message: "Wrong zip code!",
+                },
+              })}
+              type="text"
+              placeholder={errors.zipCode ? errors.zipCode.message : "Zip code"}
+              onChange={(e) => setZipCode(e.target.value)}
+              className={clsx(errors.zipCode && styles.errorInput)}
+            />
           </fieldset>
           <div className={styles.requiredInformation}>
             <span className={styles.required}>*</span> - required
@@ -190,34 +347,102 @@ const OrderForm = ({ orderRequest }) => {
         </div>
         <div className={styles.methods}>
           <div className={styles.shippingMethod}>
-            <h3>Shipment method</h3>
-            <fieldset>
-              <input type="radio" id="method" name="method1" />
+            <h3>Shipping method</h3>
+            <div className={styles.methodsContainer}>
+              <input
+                {...register("shippingMethod", {
+                  required: {
+                    value: true,
+                    message: "Shipping method is required",
+                  },
+                })}
+                type="radio"
+                id="method1"
+                name="method1"
+                onClick={() => setShipmentMethod("Delivery by courier")}
+              />
               <label htmlFor="method">Delivery by courier</label>
-            </fieldset>
-            <fieldset>
-              <input type="radio" id="method" name="method1" />
+              <input
+                {...register("shippingMethod", {
+                  required: {
+                    value: true,
+                    message: "Shipping method is required",
+                  },
+                })}
+                type="radio"
+                id="method1"
+                name="method1"
+                onClick={() => setShipmentMethod("InPost delivery")}
+              />
               <label htmlFor="method">InPost delivery</label>
-            </fieldset>
-            <fieldset>
-              <input type="radio" id="method" name="method1" />
+              <input
+                {...register("shippingMethod", {
+                  required: {
+                    value: true,
+                    message: "Shipping method is required",
+                  },
+                })}
+                type="radio"
+                id="method1"
+                name="method1"
+                onClick={() => setShipmentMethod("Delivery to shop")}
+              />
               <label htmlFor="method">Delivery to shop</label>
-            </fieldset>
+            </div>
+            {errors.shippingMethod && (
+              <p className={styles.methodError}>
+                {errors.shippingMethod.message}
+              </p>
+            )}
           </div>
           <div className={styles.paymentMethod}>
             <h3>Payment method</h3>
-            <fieldset>
-              <input type="radio" id="method" name="method2" />
+            <div className={styles.methodsContainer}>
+              <input
+                {...register("paymentMethod", {
+                  required: {
+                    value: true,
+                    message: "Payment method  is required",
+                  },
+                })}
+                type="radio"
+                id="method2"
+                name="method2"
+                onClick={() => setPaymentMethod("Bank transfer")}
+              />
               <label htmlFor="method">Bank transfer</label>
-            </fieldset>
-            <fieldset>
-              <input type="radio" id="method" name="method2" />
+              <input
+                {...register("paymentMethod", {
+                  required: {
+                    value: true,
+                    message: "Payment method  is required",
+                  },
+                })}
+                type="radio"
+                id="method2"
+                name="method2"
+                onClick={() => setShipmentMethod("Upon receipt")}
+              />
               <label htmlFor="method">Upon receipt</label>
-            </fieldset>
-            <fieldset>
-              <input type="radio" id="method" name="method2" />
-              <label htmlFor="method">Delivery to shop</label>
-            </fieldset>
+              <input
+                {...register("paymentMethod", {
+                  required: {
+                    value: true,
+                    message: "Payment method  is required",
+                  },
+                })}
+                type="radio"
+                id="method2"
+                name="method2"
+                onClick={() => setShipmentMethod("payment in the store")}
+              />
+              <label htmlFor="method">Payment in the store</label>
+            </div>
+            {errors.paymentMethod && (
+              <p className={styles.methodError}>
+                {errors.paymentMethod.message}
+              </p>
+            )}
           </div>
         </div>
       </form>
@@ -243,8 +468,14 @@ const OrderForm = ({ orderRequest }) => {
           Order and pay
         </button>
       </div>
-      {succesOrder && <div>You have successfully placed an order</div>}
-      {failedOrder && <div>Your cart is empty!</div>}
+      {succesOrder && (
+        <div className={styles.orderStatus}>
+          You have successfully placed an order
+        </div>
+      )}
+      {failedOrder && (
+        <div className={styles.orderStatus}>Your cart is empty!</div>
+      )}
     </section>
   );
 };
