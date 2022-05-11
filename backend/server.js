@@ -3,6 +3,8 @@ const cors = require("cors");
 const path = require("path");
 const mongoose = require("mongoose");
 
+const productsRoutes = require("./routes/product.routes");
+
 const app = express();
 
 // Middleware
@@ -11,7 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // API endpoints
-// app.use("/api", productsRoutes);
+app.use("/api", productsRoutes);
 
 // API error page
 app.use("/api", (req, res) => {

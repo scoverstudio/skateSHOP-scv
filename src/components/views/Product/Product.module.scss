@@ -1,0 +1,15 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  margin: 70px 15px 0;
+  .imageContainer {
+    max-width: 50%;
+    .image {
+      width: 100%;
+    }
+  }
+
+  .contentContainer {
+    max-width: 50%;
+  }
+}

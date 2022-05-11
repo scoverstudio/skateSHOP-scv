@@ -8,6 +8,7 @@ import MainLayout from "./components/layout/MainLayout/MainLayout";
 import Homepage from "./components/views/Homepage/Homepage";
 import Cart from "./components/views/Cart/Cart";
 import OrderRequest from "./components/views/OrderRequest/OrderRequest";
+import Product from "./components/views/Product/Product";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <MainLayout>
           <Routes>
             <Route path="/" element={<Homepage />} />
+            <Route path="/products/:id" element={<Product />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/order" element={<OrderRequest />} />
           </Routes>

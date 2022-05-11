@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "react-alice-carousel/lib/alice-carousel.css";
 
-import { getAllProducts } from "../../../redux/productsRedux";
+import { fetchProducts, getAllProducts } from "../../../redux/productsRedux";
 import styles from "./Products.module.scss";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -15,10 +15,16 @@ import {
   increment,
   totalPriceChange,
 } from "../../../redux/cartRedux";
+import { Link } from "react-router-dom";
 
 const Products = () => {
+  const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
-  const products = useSelector((state) => getAllProducts(state));
+
+  useEffect(() => {
+    dispatch(fetchProducts(setProducts));
+  }, []);
+
   const cartProducts = useSelector((state) => getAllProductsInCart(state));
 
   const settings = {
@@ -84,7 +90,11 @@ const Products = () => {
       </h3>
       <Slider className={styles.products} {...settings}>
         {products.map((product, index) => (
-          <div key={index} className={styles.productContainer}>
+          <Link
+            to={`/products/${product._id}`}
+            key={index}
+            className={styles.productContainer}
+          >
             <div className={styles.imageContainer}>
               <img
                 alt={product.name}
@@ -108,7 +118,7 @@ const Products = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </Slider>
     </section>
