@@ -4,6 +4,8 @@ import initialState from "./initialState";
 
 // selectors
 export const getAllProducts = (state) => state.products;
+export const getProductsFromExactProducer = ({ state, producer }) =>
+  console.log(state, producer);
 
 // action name creator
 const reducerName = "products";
@@ -36,16 +38,29 @@ export const fetchProducts = (setProducts) => {
     }
   };
 };
-export const fetchProductById = (id, setProduct, setIsLoading) => {
-  console.log(id);
+
+export const fetchProductById = (id, producer, setProduct, setIsLoading) => {
   return (dispatch) => {
     dispatch(fetchStarted());
     axios
-      .get(`${API_URL}/products/${id}`)
+      .get(`${API_URL}/products/${producer}/${id}`)
       .then((res) => {
-        console.log(res);
         setProduct(res.data);
         setIsLoading(false);
+      })
+      .catch((err) => {
+        dispatch(fetchError(err.message || true));
+      });
+  };
+};
+
+export const fetchProductByProducer = (producer, setProductByProducer) => {
+  return (dispatch) => {
+    dispatch(fetchStarted());
+    axios
+      .get(`${API_URL}/products/${producer}`)
+      .then((res) => {
+        setProductByProducer(res.data);
       })
       .catch((err) => {
         dispatch(fetchError(err.message || true));

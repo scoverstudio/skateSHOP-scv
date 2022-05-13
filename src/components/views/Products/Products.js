@@ -1,30 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "react-alice-carousel/lib/alice-carousel.css";
+import PropTypes from "prop-types";
 
-import { fetchProducts, getAllProducts } from "../../../redux/productsRedux";
 import styles from "./Products.module.scss";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./Products.css";
 import Button from "../../common/Button/Button";
-import {
-  addProduct,
-  getAllProductsInCart,
-  increment,
-  totalPriceChange,
-} from "../../../redux/cartRedux";
+import { getAllProductsInCart } from "../../../redux/cartRedux";
 import { Link } from "react-router-dom";
+import { handleProductAdd } from "../../../helpers/handleProductAdd";
+import clsx from "clsx";
 
-const Products = () => {
-  const [products, setProducts] = useState([]);
+const Products = ({ products, title, style }) => {
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchProducts(setProducts));
-  }, []);
-
   const cartProducts = useSelector((state) => getAllProductsInCart(state));
 
   const settings = {
@@ -63,39 +54,13 @@ const Products = () => {
     ],
   };
 
-  const handleProductAdd = (product) => {
-    const productAlreadyInCart = cartProducts.find(
-      (item) => item.id === product.id
-    );
-
-    if (productAlreadyInCart) {
-      if (
-        productAlreadyInCart.quantity < 10 &&
-        productAlreadyInCart.quantity >= 1
-      ) {
-        dispatch(increment(product.id));
-        dispatch(totalPriceChange(product.id));
-      }
-    } else {
-      dispatch(
-        addProduct({ ...product, totalPrice: product.price, quantity: 1 })
-      );
-    }
-  };
-
   return (
-    <section className={styles.root}>
-      <h3>
-        Some of our <span>decks</span>
-      </h3>
+    <div className={styles.root}>
+      <h3>{title}</h3>
       <Slider className={styles.products} {...settings}>
         {products.map((product, index) => (
-          <Link
-            to={`/products/${product._id}`}
-            key={index}
-            className={styles.productContainer}
-          >
-            <div className={styles.imageContainer}>
+          <div key={index} className={styles.productContainer}>
+            <div className={clsx(styles.imageContainer)}>
               <img
                 alt={product.name}
                 className={styles.image}
@@ -111,18 +76,27 @@ const Products = () => {
                 )}
                 <div className={styles.control}>
                   <Button
-                    onClick={() => handleProductAdd(product)}
+                    onClick={() =>
+                      handleProductAdd(product, cartProducts, dispatch)
+                    }
                     text="Add to cart"
                   />
-                  <Button text="Details" />
+                  <Link to={`/products/${product.producer}/${product._id}`}>
+                    <Button text="Details" />
+                  </Link>
                 </div>
               </div>
             </div>
-          </Link>
+          </div>
         ))}
       </Slider>
-    </section>
+    </div>
   );
 };
 
+Products.propTypes = {
+  products: PropTypes.array,
+  title: PropTypes.object,
+  style: PropTypes.string,
+};
 export default Products;

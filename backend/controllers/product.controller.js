@@ -10,6 +10,16 @@ exports.getAll = async (req, res) => {
   }
 };
 
+exports.getByProducer = async (req, res) => {
+  try {
+    const result = await Product.find({ producer: req.params.producer });
+    if (!result) res.status(404).json({ product: "NOT FOUND" });
+    else res.json(result);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
 exports.getByID = async (req, res) => {
   try {
     const result = await Product.findById(req.params.id);
