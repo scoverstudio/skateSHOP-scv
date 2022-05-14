@@ -4,8 +4,6 @@ import initialState from "./initialState";
 
 // selectors
 export const getAllProducts = (state) => state.products;
-export const getProductsFromExactProducer = ({ state, producer }) =>
-  console.log(state, producer);
 
 // action name creator
 const reducerName = "products";

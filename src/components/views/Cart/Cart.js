@@ -23,8 +23,6 @@ const Cart = () => {
   const subtotal = useSelector(getSubtotalPrice);
   const freeDeliveryPrice = useSelector(getFreeDeliveryPrice);
 
-  useEffect(() => {}, []);
-
   const handleProductRemove = (id) => {
     dispatch(removeProduct(id));
   };

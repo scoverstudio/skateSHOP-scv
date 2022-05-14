@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
-import { getAllProductsInCart } from "../../../redux/cartRedux";
+import { useDispatch, useSelector } from "react-redux";
+import { clearCart, getAllProductsInCart } from "../../../redux/cartRedux";
 import styles from "./OrderForm.module.scss";
 import clsx from "clsx";
 
@@ -26,34 +26,50 @@ const OrderForm = ({ orderRequest }) => {
 
   const [shipmentMethod, setShipmentMethod] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("");
-
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
   const cartProducts = useSelector((state) => getAllProductsInCart(state));
 
+  const clearState = () => {
+    setName("");
+    setSurname("");
+    setEmail("");
+    setPhone("");
+    setShipmentName("");
+    setShipmentSurname("");
+    setCountry("");
+    setRegion("");
+    setStreet("");
+    setBuilding("");
+    setApartament("");
+    setCity("");
+    setZipCode("");
+    setShipmentMethod(false);
+    setPaymentMethod(false);
+  };
+
   const onSubmit = () => {
-    console.log("click");
     const order = {
       userInformations: {
-        name: name,
-        surname: surname,
-        email: email,
-        phoneNumber: phone,
+        name,
+        surname,
+        email,
+        phone,
       },
       shipmentInformations: {
-        name: shipmentName,
-        surname: shipmentSurname,
-        country: country,
-        region: region,
-        street: street,
-        building: building,
-        apartament: apartament,
-        city: city,
-        zipCode: zipCode,
+        shipmentName,
+        shipmentSurname,
+        country,
+        region,
+        street,
+        building,
+        apartament,
+        city,
+        zipCode,
         shipmentMethod,
         paymentMethod,
       },
@@ -61,8 +77,11 @@ const OrderForm = ({ orderRequest }) => {
         ...cartProducts,
       },
     };
+
     if (cartProducts.length !== 0) {
       orderRequest(order);
+      dispatch(clearCart());
+      clearState();
       setSuccesOrder(true);
     } else {
       setFailedOrder(true);
@@ -103,6 +122,7 @@ const OrderForm = ({ orderRequest }) => {
               })}
               name="name"
               type="text"
+              value={name}
               placeholder={errors.name ? errors.name.message : "Name"}
               onChange={(e) => setName(e.target.value)}
               className={clsx(errors.name && styles.errorInput)}
@@ -125,6 +145,7 @@ const OrderForm = ({ orderRequest }) => {
               })}
               type="text"
               name="surname"
+              value={surname}
               placeholder={errors.surname ? errors.surname.message : "Surname"}
               onChange={(e) => setSurname(e.target.value)}
               className={clsx(errors.surname && styles.errorInput)}
@@ -150,6 +171,7 @@ const OrderForm = ({ orderRequest }) => {
               })}
               type="text"
               name="email"
+              value={email}
               placeholder={errors.email ? errors.email.message : "Adress email"}
               onChange={(e) => setEmail(e.target.value)}
               className={clsx(errors.email && styles.errorInput)}
@@ -168,6 +190,7 @@ const OrderForm = ({ orderRequest }) => {
               })}
               type="phone"
               name="phone"
+              value={phone}
               placeholder={errors.phone ? errors.phone.message : "Phone number"}
               onChange={(e) => setPhone(e.target.value)}
               className={clsx(errors.phone && styles.errorInput)}
@@ -193,6 +216,7 @@ const OrderForm = ({ orderRequest }) => {
                 },
               })}
               type="text"
+              value={shipmentName}
               placeholder={
                 errors.shipmentName ? errors.shipmentName.message : "Name"
               }
@@ -215,6 +239,7 @@ const OrderForm = ({ orderRequest }) => {
                 },
               })}
               type="text"
+              value={shipmentSurname}
               placeholder={
                 errors.shipmentSurname
                   ? errors.shipmentSurname.message
@@ -237,6 +262,7 @@ const OrderForm = ({ orderRequest }) => {
                 },
               })}
               type="text"
+              value={country}
               placeholder={errors.country ? errors.country.message : "Country"}
               onChange={(e) => setCountry(e.target.value)}
               className={clsx(errors.country && styles.errorInput)}
@@ -253,6 +279,7 @@ const OrderForm = ({ orderRequest }) => {
                 },
               })}
               type="text"
+              value={region}
               placeholder={errors.region ? errors.region.message : "Region"}
               onChange={(e) => setRegion(e.target.value)}
               className={clsx(errors.region && styles.errorInput)}
@@ -273,6 +300,7 @@ const OrderForm = ({ orderRequest }) => {
                   },
                 })}
                 type="text"
+                value={street}
                 placeholder={errors.street ? errors.street.message : "Street"}
                 onChange={(e) => setStreet(e.target.value)}
                 className={clsx(errors.street && styles.errorInput)}
@@ -285,6 +313,7 @@ const OrderForm = ({ orderRequest }) => {
                   },
                 })}
                 type="text"
+                value={building}
                 placeholder={
                   errors.building ? errors.building.message : "Building"
                 }
@@ -292,18 +321,10 @@ const OrderForm = ({ orderRequest }) => {
                 className={clsx(errors.building && styles.errorInput)}
               />
               <input
-                {...register("apartament", {
-                  required: {
-                    value: true,
-                    message: "Apartament field is required",
-                  },
-                })}
                 type="text"
-                placeholder={
-                  errors.apartament ? errors.apartament.message : "Apartament"
-                }
+                value={apartament}
                 onChange={(e) => setApartament(e.target.value)}
-                className={clsx(errors.apartament && styles.errorInput)}
+                className={errors.apartament}
               />
             </div>
             <label htmlFor="City">City</label>
@@ -320,6 +341,7 @@ const OrderForm = ({ orderRequest }) => {
                 },
               })}
               type="text"
+              value={city}
               placeholder={errors.city ? errors.city.message : "City"}
               onChange={(e) => setCity(e.target.value)}
               className={clsx(errors.city && styles.errorInput)}
@@ -336,6 +358,7 @@ const OrderForm = ({ orderRequest }) => {
                 },
               })}
               type="text"
+              value={zipCode}
               placeholder={errors.zipCode ? errors.zipCode.message : "Zip code"}
               onChange={(e) => setZipCode(e.target.value)}
               className={clsx(errors.zipCode && styles.errorInput)}
@@ -356,6 +379,7 @@ const OrderForm = ({ orderRequest }) => {
                     message: "Shipping method is required",
                   },
                 })}
+                value={shipmentMethod}
                 type="radio"
                 id="method1"
                 name="method1"
@@ -369,6 +393,7 @@ const OrderForm = ({ orderRequest }) => {
                     message: "Shipping method is required",
                   },
                 })}
+                value={shipmentMethod}
                 type="radio"
                 id="method1"
                 name="method1"
@@ -382,6 +407,7 @@ const OrderForm = ({ orderRequest }) => {
                     message: "Shipping method is required",
                   },
                 })}
+                value={shipmentMethod}
                 type="radio"
                 id="method1"
                 name="method1"
@@ -405,6 +431,7 @@ const OrderForm = ({ orderRequest }) => {
                     message: "Payment method  is required",
                   },
                 })}
+                value={paymentMethod}
                 type="radio"
                 id="method2"
                 name="method2"
@@ -418,10 +445,11 @@ const OrderForm = ({ orderRequest }) => {
                     message: "Payment method  is required",
                   },
                 })}
+                value={paymentMethod}
                 type="radio"
                 id="method2"
                 name="method2"
-                onClick={() => setShipmentMethod("Upon receipt")}
+                onClick={() => setPaymentMethod("Upon receipt")}
               />
               <label htmlFor="method">Upon receipt</label>
               <input
@@ -431,10 +459,11 @@ const OrderForm = ({ orderRequest }) => {
                     message: "Payment method  is required",
                   },
                 })}
+                value={paymentMethod}
                 type="radio"
                 id="method2"
                 name="method2"
-                onClick={() => setShipmentMethod("payment in the store")}
+                onClick={() => setPaymentMethod("payment in the store")}
               />
               <label htmlFor="method">Payment in the store</label>
             </div>
@@ -468,6 +497,7 @@ const OrderForm = ({ orderRequest }) => {
           Order and pay
         </button>
       </div>
+
       {succesOrder && (
         <div className={styles.orderStatus}>
           You have successfully placed an order

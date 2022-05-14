@@ -10,6 +10,8 @@ exports.getAll = async (req, res) => {
   }
 };
 
+
+
 exports.getByProducer = async (req, res) => {
   try {
     const result = await Product.find({ producer: req.params.producer });

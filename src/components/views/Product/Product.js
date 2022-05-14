@@ -8,7 +8,6 @@ import {
   fetchProductByProducer,
 } from "../../../redux/productsRedux";
 import Button from "../../common/Button/Button";
-import Products from "../Products/Products";
 import styles from "./Product.module.scss";
 
 const Product = () => {
