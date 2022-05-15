@@ -20,6 +20,9 @@ const orderSchema = new mongoose.Schema({
     shipmentMethod: { type: String, required: true },
     paymentMethod: { type: String, required: true },
   },
+  comments: {
+    comments: { type: String },
+  },
   items: { type: Object },
 });
 

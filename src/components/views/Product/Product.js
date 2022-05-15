@@ -8,6 +8,7 @@ import {
   fetchProductByProducer,
 } from "../../../redux/productsRedux";
 import Button from "../../common/Button/Button";
+import Products from "../Products/Products";
 import styles from "./Product.module.scss";
 
 const Product = () => {
@@ -23,7 +24,7 @@ const Product = () => {
     dispatch(fetchProductById(id, producer, setProduct, setIsLoading));
     dispatch(fetchProductByProducer(producer, setProductsByProducer));
   }, [dispatch, id, producer]);
-  console.log(isLoading);
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -41,7 +42,7 @@ const Product = () => {
           </div>
           <div className={styles.secondPanel}>
             <div className={styles.contentContainer}>
-              <h3>{product.name}</h3>
+              <h3 className={styles.titleName}>{product.name}</h3>
               <p className={styles.price}>$ {product.price}</p>
               <div className={styles.details}>
                 <h3>Details</h3>
@@ -61,15 +62,13 @@ const Product = () => {
                 />
               </div>
             </div>
-            {/* {productsByProducer && (
-            <Products
-              style={styles.productsByProducer}
-              products={productsByProducer}
-              title="more from this Producer"
-            />
-          )} */}
           </div>
         </div>
+        <Products
+          style={styles.productsByProducer}
+          products={productsByProducer}
+          title="Check out other products"
+        />
       </div>
     )
   );

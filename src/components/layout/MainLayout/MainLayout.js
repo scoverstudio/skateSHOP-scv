@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./MainLayout.module.scss";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 import { getCount } from "../../../redux/cartRedux";
 
@@ -22,7 +22,7 @@ const MainLayout = ({ children }) => {
                 <Link to="/about">about us</Link>
               </div>
               <div className={styles.freeDelivery}>
-                <Link to="/cart">Free delivery from 50$</Link>
+                <Link to="/cart">Free delivery from 150$</Link>
               </div>
               <div className={styles.return}>
                 <Link to="/cart">returns and complaints</Link>
@@ -36,13 +36,18 @@ const MainLayout = ({ children }) => {
             <div className={styles.routes}>
               <ul>
                 <li>
-                  <Link to="/cart">
+                  <NavLink to="/">
+                    <FontAwesomeIcon className={styles.Icon} icon={faHeart} />
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/cart">
                     <FontAwesomeIcon
-                      className={styles.cartIcon}
+                      className={styles.Icon}
                       icon={faCartShopping}
                     />
                     <span className={styles.cartValue}>{productsInCart}</span>
-                  </Link>
+                  </NavLink>
                 </li>
               </ul>
             </div>

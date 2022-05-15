@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "react-alice-carousel/lib/alice-carousel.css";
 import PropTypes from "prop-types";
@@ -13,9 +13,16 @@ import { getAllProductsInCart } from "../../../redux/cartRedux";
 import { Link } from "react-router-dom";
 import { handleProductAdd } from "../../../helpers/handleProductAdd";
 import clsx from "clsx";
+import { fetchProducts } from "../../../redux/productsRedux";
 
-const Products = ({ products, title, style }) => {
+const Products = ({ title, style }) => {
+  const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchProducts(setProducts));
+  }, []);
+
   const cartProducts = useSelector((state) => getAllProductsInCart(state));
 
   const settings = {
@@ -55,7 +62,7 @@ const Products = ({ products, title, style }) => {
   };
 
   return (
-    <div className={styles.root}>
+    <section className={styles.root}>
       <h3>{title}</h3>
       <Slider className={styles.products} {...settings}>
         {products.map((product, index) => (
@@ -90,7 +97,7 @@ const Products = ({ products, title, style }) => {
           </div>
         ))}
       </Slider>
-    </div>
+    </section>
   );
 };
 

@@ -134,6 +134,10 @@ const Cart = () => {
               <h5>Subtotal</h5>
               <p>$ {subtotal}</p>
             </div>
+            <div className={styles.delivery}>
+              <h5>Delivery cost</h5>
+              <p>$ {subtotal >= 150 ? "0" : "20"}</p>
+            </div>
             <div className={styles.total}>
               <h5>Total</h5>
 

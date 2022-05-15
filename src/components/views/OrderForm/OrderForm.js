@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { clearCart, getAllProductsInCart } from "../../../redux/cartRedux";
+import {
+  clearCart,
+  getAllProductsInCart,
+  getFreeDeliveryPrice,
+  getSubtotalPrice,
+} from "../../../redux/cartRedux";
 import styles from "./OrderForm.module.scss";
 import clsx from "clsx";
 
@@ -26,6 +31,7 @@ const OrderForm = ({ orderRequest }) => {
 
   const [shipmentMethod, setShipmentMethod] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("");
+  const [comments, setComments] = useState("");
   const dispatch = useDispatch();
   const {
     register,
@@ -33,6 +39,9 @@ const OrderForm = ({ orderRequest }) => {
     formState: { errors },
   } = useForm();
   const cartProducts = useSelector((state) => getAllProductsInCart(state));
+
+  const subtotal = useSelector(getSubtotalPrice);
+  const freeDeliveryPrice = useSelector(getFreeDeliveryPrice);
 
   const clearState = () => {
     setName("");
@@ -50,6 +59,7 @@ const OrderForm = ({ orderRequest }) => {
     setZipCode("");
     setShipmentMethod(false);
     setPaymentMethod(false);
+    setComments("");
   };
 
   const onSubmit = () => {
@@ -72,6 +82,9 @@ const OrderForm = ({ orderRequest }) => {
         zipCode,
         shipmentMethod,
         paymentMethod,
+      },
+      comments: {
+        comments,
       },
       items: {
         ...cartProducts,
@@ -155,7 +168,8 @@ const OrderForm = ({ orderRequest }) => {
               Adress email <span className={styles.required}>*</span>
             </label>
             <label htmlFor="phone number">
-              Phone number <span className={styles.required}>*</span>
+              Phone number (xxx-xxx-xxx)
+              <span className={styles.required}> *</span>
             </label>
             <input
               {...register("email", {
@@ -248,8 +262,12 @@ const OrderForm = ({ orderRequest }) => {
               onChange={(e) => setShipmentSurname(e.target.value)}
               className={clsx(errors.shipmentSurname && styles.errorInput)}
             />
-            <label htmlFor="Country">Country</label>
-            <label htmlFor="Region">Region</label>
+            <label htmlFor="Country">
+              Country <span className={styles.required}>*</span>
+            </label>
+            <label htmlFor="Region">
+              Region <span className={styles.required}>*</span>
+            </label>
             <input
               {...register("country", {
                 required: {
@@ -285,9 +303,13 @@ const OrderForm = ({ orderRequest }) => {
               className={clsx(errors.region && styles.errorInput)}
             />
             <div className={styles.threeInRowContainer}>
-              <label htmlFor="Street">Street</label>
-              <label htmlFor="Building">Building</label>
-              <label htmlFor="Apartment">Apartment</label>
+              <label htmlFor="Street">
+                Street <span className={styles.required}>*</span>
+              </label>
+              <label htmlFor="Building">
+                Building <span className={styles.required}>*</span>
+              </label>
+              <label htmlFor="Apartment">Apartment </label>
               <input
                 {...register("street", {
                   required: {
@@ -327,8 +349,12 @@ const OrderForm = ({ orderRequest }) => {
                 className={errors.apartament}
               />
             </div>
-            <label htmlFor="City">City</label>
-            <label htmlFor="ZIP code">ZIP code</label>
+            <label htmlFor="City">
+              City <span className={styles.required}>*</span>
+            </label>
+            <label htmlFor="ZIP code">
+              ZIP code <span className={styles.required}>*</span>
+            </label>
             <input
               {...register("city", {
                 required: {
@@ -490,8 +516,45 @@ const OrderForm = ({ orderRequest }) => {
               <span>$ {product.price * product.quantity}</span>
             </div>
           ))}
+          <div className={styles.summary}>
+            <div className={styles.subtotal}>
+              <h5>Subtotal</h5>
+              <p>$ {subtotal}</p>
+            </div>
+            <div className={styles.delivery}>
+              <h5>Delivery cost</h5>
+              <p>$ {subtotal >= 150 ? "0" : "20"}</p>
+            </div>
+            <div className={styles.total}>
+              <h5>Total</h5>
+              {subtotal >= freeDeliveryPrice ? (
+                <div className={styles.totalPriceContainer}>
+                  <p className={styles.totalPrice}>$ {subtotal}</p>
+                </div>
+              ) : (
+                <p>$ {subtotal + 20}</p>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className={styles.comments}>
+          <h3>Give us more informations</h3>
+          <textarea
+            className={styles.textarea}
+            {...register("comments", {
+              maxLength: {
+                value: 100,
+                message: "max. 100 characters",
+              },
+            })}
+            onChange={(e) => setComments(e.target.value)}
+          />
+          {errors.comments && (
+            <p className={styles.error}>{errors.comments.message}</p>
+          )}
         </div>
       </div>
+
       <div className={styles.control}>
         <button type="submit" form="order-form">
           Order and pay

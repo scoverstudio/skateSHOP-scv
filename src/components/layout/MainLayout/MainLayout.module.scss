@@ -1,29 +1,6 @@
 @import "../../../styles/global.scss";
 @import "../../../styles/settings.scss";
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html,
-body {
-  font-size: 10px;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-}
-
-section {
-  margin: 0 auto;
-  max-width: 1500px;
-  padding-bottom: 10rem;
-  min-height: calc(100vh - $navHeight - $footerHeigth);
-}
-
 .root {
   flex: 1 0 auto;
   font-family: "Montserrat", sans-serif;
@@ -32,9 +9,11 @@ section {
   flex-wrap: wrap;
 
   .navigation {
+    position: fixed;
+    z-index: 1;
     width: 100%;
     background-color: #1e2022;
-    height: $navHeight;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4);
 
     .navContainer {
       .topBarContainer {
@@ -80,8 +59,12 @@ section {
         }
         .routes {
           ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             li {
               list-style: none;
+              padding-left: 2rem;
               a {
                 position: relative;
                 display: flex;
@@ -89,8 +72,9 @@ section {
                 align-items: center;
                 color: #f0f5f9;
                 text-decoration: none;
+                font-size: 1.5rem;
 
-                .cartIcon {
+                .Icon {
                   font-size: 2.5rem;
                   padding: 0.5rem;
                 }
@@ -109,16 +93,21 @@ section {
                   font-size: 1.2rem;
                 }
 
-                // &::after {
-                //   content: "";
-                //   position: absolute;
-                //   top: -0.5rem;
-                //   right: -0.5rem;
-                //   height: 2rem;
-                //   width: 2rem;
-                //   border-radius: 50%;
-                //   background-color: black;
-                // }
+                &::after {
+                  content: "";
+                  position: absolute;
+                  bottom: -0.3rem;
+                  left: 50%;
+                  transform: translateX(-50%);
+                  height: 0;
+                  width: 80%;
+                  background-color: #f0f5f9;
+                  transition: 0.1s;
+                }
+
+                &:hover::after {
+                  height: 0.3rem;
+                }
               }
             }
           }
@@ -126,7 +115,6 @@ section {
       }
     }
   }
-
   footer {
     flex-shrink: 0;
     height: $footerHeigth;

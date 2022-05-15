@@ -4,6 +4,8 @@
   width: 100%;
   max-width: 1500px;
   margin: 0 auto;
+  padding-top: $navHeight;
+  height: calc(100vh - $sectionPadding);
 
   .emptyCart {
     display: flex;
@@ -182,9 +184,10 @@
       }
 
       .subtotal,
+      .delivery,
       .total {
         margin: 0 3rem;
-        padding: 1rem;
+        padding: 1.5rem 1rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -211,6 +214,11 @@
             border-left: 1px solid black;
           }
         }
+      }
+
+      .subtotal,
+      .delivery {
+        padding: 0.1rem 1rem;
       }
       .freeDelivery {
         text-align: center;

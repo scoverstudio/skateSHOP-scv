@@ -1,9 +1,15 @@
+@import "../../../styles/settings.scss";
+
 .root {
   width: 100%;
+  padding-top: $navHeight;
+  max-width: 1500px;
+  margin: 0 auto;
 
   .header {
     position: relative;
     text-align: center;
+    margin: 2.5rem 0;
     height: 55rem;
     background-color: #c9d6df;
     overflow: hidden;
@@ -11,6 +17,7 @@
     background-size: cover;
 
     .banner {
+      padding: 5rem;
       position: relative;
       height: 100%;
       width: 100%;
@@ -64,8 +71,58 @@
       transform: rotate(-30deg);
       background-color: #000;
     }
+
+    @media (max-width: 1500px) {
+      margin: 2.5rem;
+    }
   }
 
-  .homeProducts {
+  .aboutUs {
+    width: 100%;
+    .panels {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      flex-wrap: nowrap;
+      padding: 2rem;
+      div {
+        min-width: 35rem;
+        height: 15rem;
+        background-color: #c9d6df;
+        border-radius: 1rem;
+        box-shadow: 8px 8px 8px rgb(181, 181, 181);
+        width: 200px;
+        transition: 0.2s;
+
+        h4 {
+          text-align: center;
+          padding: 3rem;
+          font-size: 2rem;
+        }
+
+        p {
+          text-align: center;
+          font-size: 1.5rem;
+        }
+      }
+    }
+    h3 {
+      position: relative;
+      margin: 5rem auto;
+      width: fit-content;
+      font-weight: 500;
+      font-size: 3rem;
+
+      &::after {
+        content: "";
+        position: absolute;
+        height: 0.2rem;
+        width: 90%;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #000;
+      }
+    }
   }
 }

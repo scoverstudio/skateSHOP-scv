@@ -1,8 +1,31 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800;900&display=swap");
+@import "./settings.scss";
 
 h2 {
   position: relative;
   font-size: 4rem;
   padding: 2rem 4rem;
   font-weight: 400;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-size: 10px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+section {
+  margin: 0 auto;
+  max-width: 1720px;
+  padding-bottom: 5rem;
 }

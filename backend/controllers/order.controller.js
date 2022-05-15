@@ -28,24 +28,8 @@ exports.addOrder = async (req, res) => {
       paymentMethod,
     } = req.body.shipmentInformations;
     const { items } = req.body;
-    console.log(
-      name,
-      surname,
-      email,
-      phone,
-      shipmentName,
-      shipmentSurname,
-      country,
-      region,
-      street,
-      building,
-      apartament,
-      city,
-      zipCode,
-      shipmentMethod,
-      paymentMethod,
-      items
-    );
+    const { comments } = req.body.comments;
+
     if (
       name &&
       surname &&
@@ -82,6 +66,9 @@ exports.addOrder = async (req, res) => {
           zipCode,
           shipmentMethod,
           paymentMethod,
+        },
+        comments: {
+          comments,
         },
         items,
       });
