@@ -1,14 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import styles from "./MainLayout.module.scss";
 import { Link, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping, faHeart } from "@fortawesome/free-solid-svg-icons";
-import { useSelector } from "react-redux";
-import { getCount } from "../../../redux/cartRedux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchCartFromLocalStorage,
+  getAllProductsInCart,
+  getCount,
+} from "../../../redux/cartRedux";
 
 const MainLayout = ({ children }) => {
+  const dispatch = useDispatch();
   const productsInCart = useSelector(getCount);
+  const cartProducts = useSelector(getAllProductsInCart);
+
+  useEffect(() => {
+    dispatch(fetchCartFromLocalStorage());
+  }, []);
+
+  useEffect(() => {
+    cartProducts &&
+      localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
+  }, [cartProducts, dispatch]);
 
   return (
     <div className={styles.root}>

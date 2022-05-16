@@ -29,7 +29,7 @@ app.use("*", (req, res) => {
 });
 
 // MONGOOSE
-mongoose.connect("mongodb://localhost:27017/skateShop", {
+mongoose.connect("mongodb+srv://SCOVER:studenttest123@skateshop.qjh8m.mongodb.net/?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });

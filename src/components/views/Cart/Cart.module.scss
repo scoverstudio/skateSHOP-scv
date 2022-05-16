@@ -5,7 +5,7 @@
   max-width: 1500px;
   margin: 0 auto;
   padding-top: $navHeight;
-  height: calc(100vh - $sectionPadding);
+  min-height: calc(100vh - $sectionPadding);
 
   .emptyCart {
     display: flex;

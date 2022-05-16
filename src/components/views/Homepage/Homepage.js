@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { fetchProducts } from "../../../redux/productsRedux";
+import React from "react";
 import Products from "../Products/Products";
 import styles from "./Homepage.module.scss";
 
 const Homepage = () => {
-
   return (
     <div className={styles.root}>
       <div className={styles.header}>

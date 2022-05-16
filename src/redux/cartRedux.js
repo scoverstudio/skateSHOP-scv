@@ -1,3 +1,5 @@
+import { useDispatch } from "react-redux";
+
 /* selectors */
 export const getAllProductsInCart = ({ cart }) => cart.products;
 export const getFreeDeliveryPrice = ({ cart }) => cart.freeDelivery;
@@ -13,6 +15,7 @@ const createActionName = (name) => `app/${reducerName}/${name}`;
 
 /* action types */
 const ADD_PRODUCT = createActionName("ADD_PRODUCT");
+const ADD_PRODUCT_LS = createActionName("ADD_PRODUCT_LS");
 const REMOVE_PRODUCT = createActionName("REMOVE_PRODUCT");
 const CLEAR_CART = createActionName("CLEAR_CART");
 const INCREMENT = createActionName("INCREMENT");
@@ -22,6 +25,7 @@ const QUANTITY_CHANGE = createActionName("QUANTITY_CHANGE");
 
 /* action creators */
 export const addProduct = (payload) => ({ payload, type: ADD_PRODUCT });
+export const addProductLS = (payload) => ({ payload, type: ADD_PRODUCT_LS });
 export const changeQuantity = (payload) => ({ payload, type: QUANTITY_CHANGE });
 export const removeProduct = (payload) => ({ payload, type: REMOVE_PRODUCT });
 export const clearCart = (payload) => ({ payload, type: CLEAR_CART });
@@ -32,6 +36,15 @@ export const totalPriceChange = (payload) => ({
   type: TOTAL_PRICE_CHANGE,
 });
 
+/* thunk */
+
+export const fetchCartFromLocalStorage = () => {
+  return (dispatch) => {
+    const cartProducts = JSON.parse(localStorage.getItem("cartProducts"));
+    dispatch(addProductLS(cartProducts));
+  };
+};
+
 /* reducer */
 export const cartReducer = (statePart = [], action = {}) => {
   switch (action.type) {
@@ -39,6 +52,12 @@ export const cartReducer = (statePart = [], action = {}) => {
       return {
         ...statePart,
         products: [...statePart.products, action.payload],
+      };
+    }
+    case ADD_PRODUCT_LS: {
+      return {
+        ...statePart,
+        products: [...action.payload],
       };
     }
     case QUANTITY_CHANGE: {
