@@ -30,7 +30,7 @@ app.use("*", (req, res) => {
 
 // MONGOOSE
 mongoose.connect(
-  `mongodb+srv://SCOVER:${process.end.DB_PASS}@skateshop.qjh8m.mongodb.net/?retryWrites=true&w=majority`,
+  `mongodb+srv://SCOVER:${process.env.DB_PASS}@skateshop.qjh8m.mongodb.net/?retryWrites=true&w=majority`,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
