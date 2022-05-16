@@ -18,11 +18,14 @@ const MainLayout = ({ children }) => {
 
   useEffect(() => {
     dispatch(fetchCartFromLocalStorage());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     cartProducts &&
-      localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
+      localStorage.setItem(
+        "cartProducts",
+        JSON.stringify(cartProducts) || "[]"
+      );
   }, [cartProducts, dispatch]);
 
   return (

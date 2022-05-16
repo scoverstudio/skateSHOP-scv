@@ -21,7 +21,7 @@ const Products = ({ title, style }) => {
 
   useEffect(() => {
     dispatch(fetchProducts(setProducts));
-  }, []);
+  }, [dispatch]);
 
   const cartProducts = useSelector((state) => getAllProductsInCart(state));
 
@@ -60,6 +60,8 @@ const Products = ({ title, style }) => {
       },
     ],
   };
+
+  console.log(products);
 
   return (
     <section className={styles.root}>

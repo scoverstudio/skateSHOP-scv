@@ -72,7 +72,6 @@ exports.addOrder = async (req, res) => {
         },
         items,
       });
-      console.log(newOrder);
       await newOrder.save();
       res.json({ message: "OK", newOrder });
     } else res.status(404).json({ message: "not found..." });

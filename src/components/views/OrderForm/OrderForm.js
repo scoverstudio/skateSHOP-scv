@@ -57,8 +57,8 @@ const OrderForm = ({ orderRequest }) => {
     setApartament("");
     setCity("");
     setZipCode("");
-    setShipmentMethod(false);
-    setPaymentMethod(false);
+    setShipmentMethod("");
+    setPaymentMethod("");
     setComments("");
   };
 
@@ -547,6 +547,7 @@ const OrderForm = ({ orderRequest }) => {
                 message: "max. 100 characters",
               },
             })}
+            value={comments}
             onChange={(e) => setComments(e.target.value)}
           />
           {errors.comments && (

@@ -1,5 +1,3 @@
-import { useDispatch } from "react-redux";
-
 /* selectors */
 export const getAllProductsInCart = ({ cart }) => cart.products;
 export const getFreeDeliveryPrice = ({ cart }) => cart.freeDelivery;
@@ -40,7 +38,9 @@ export const totalPriceChange = (payload) => ({
 
 export const fetchCartFromLocalStorage = () => {
   return (dispatch) => {
-    const cartProducts = JSON.parse(localStorage.getItem("cartProducts"));
+    const cartProducts = JSON.parse(
+      localStorage.getItem("cartProducts") || "[]"
+    );
     dispatch(addProductLS(cartProducts));
   };
 };
