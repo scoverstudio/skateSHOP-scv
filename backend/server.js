@@ -29,10 +29,13 @@ app.use("*", (req, res) => {
 });
 
 // MONGOOSE
-mongoose.connect("mongodb+srv://SCOVER:studenttest123@skateshop.qjh8m.mongodb.net/?retryWrites=true&w=majority", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(
+  `mongodb+srv://SCOVER:${process.end.DB_PASS}@skateshop.qjh8m.mongodb.net/?retryWrites=true&w=majority`,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
 
 const db = mongoose.connection;
 
