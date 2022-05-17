@@ -180,16 +180,16 @@
       background-size: cover;
 
       @media (max-width: 2560px) {
-        animation: skater-move-1920px 5s forwards linear infinite;
+        animation: skater-move-1920px 12s forwards linear infinite;
       }
       @media (max-width: 1680px) {
-        animation: skater-move-1680px 5s forwards linear infinite;
+        animation: skater-move-1680px 9s forwards linear infinite;
       }
       @media (max-width: 1024px) {
-        animation: skater-move-1024px 5s forwards linear infinite;
+        animation: skater-move-1024px 6s forwards linear infinite;
       }
       @media (max-width: 600px) {
-        animation: skater-move-600px 5s forwards linear infinite;
+        animation: skater-move-600px 4s forwards linear infinite;
       }
     }
   }

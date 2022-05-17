@@ -63,6 +63,10 @@
             p {
               margin-bottom: 0.2rem;
             }
+
+            @media (max-width: 500px) {
+              padding-bottom: 10rem;
+            }
           }
 
           .productActions {
@@ -160,6 +164,10 @@
             @media (max-width: 1110px) {
               margin-bottom: 2rem;
             }
+            @media (max-width: 500px) {
+              justify-content: center;
+              margin: 0;
+            }
           }
 
           .price {
@@ -167,9 +175,19 @@
             width: 100%;
             font-size: 2rem;
             font-weight: 600;
+
+            @media (max-width: 500px) {
+            }
           }
           @media (max-width: 1110px) {
             justify-content: center;
+          }
+
+          @media (max-width: 500px) {
+            left: 0;
+            bottom: 3rem;
+            width: 15rem;
+            height: 5rem;
           }
         }
       }
@@ -240,7 +258,8 @@
       }
 
       @media (max-width: 1024px) {
-        min-width: 50rem;
+        min-width: 35rem;
+        margin-bottom: 5rem;
       }
     }
   }
