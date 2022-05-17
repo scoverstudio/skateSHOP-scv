@@ -1,13 +1,15 @@
 .root {
   max-width: 1500px;
   margin: 0 auto;
-  
+  padding-bottom: 0rem;
+
   h3 {
     position: relative;
     margin: 5rem auto;
     width: fit-content;
     font-weight: 500;
     font-size: 3rem;
+    text-align: center;
 
     &::after {
       content: "";

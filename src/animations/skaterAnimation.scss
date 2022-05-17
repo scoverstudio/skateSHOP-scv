@@ -273,7 +273,7 @@
     transform: translateX(0);
   }
   15% {
-    transform: translateX(81vw);
+    transform: translateX(80vw) rotate(-5deg);
   }
   16% {
     transform: translateX(81.5vw) rotate(-10deg);
@@ -327,16 +327,16 @@
     transform: translate(82vw, -3rem) rotate(-30deg) rotateY(180deg);
   }
   47% {
-    transform: translate(82.5vw, -2rem) rotate(-20deg) rotateY(180deg);
+    transform: translate(81.5vw, -2rem) rotate(-20deg) rotateY(180deg);
   }
   48% {
-    transform: translate(83vw, -1rem) rotate(-10deg) rotateY(180deg);
+    transform: translate(81vw, -1rem) rotate(-10deg) rotateY(180deg);
   }
   49% {
-    transform: translate(83vw, 0) rotate(0deg) rotateY(180deg);
+    transform: translate(81vw, 0) rotate(0deg) rotateY(180deg);
   }
   50% {
-    transform: translate(83vw, 0) rotate(0deg) rotateY(180deg);
+    transform: translate(81vw, 0) rotate(0deg) rotateY(180deg);
   }
   65% {
     transform: translate(-8vw, 0) rotate(0deg) rotateY(180deg);
