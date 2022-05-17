@@ -75,6 +75,16 @@
     @media (max-width: 1500px) {
       margin: 2.5rem;
     }
+
+    @media (max-width: 600px) {
+      background-repeat: repeat;
+      background-position: -10rem;
+    }
+
+    @media (max-width: 420px) {
+      background-repeat: repeat;
+      background-position: -20rem;
+    }
   }
 
   .aboutUs {
@@ -84,10 +94,12 @@
       flex-direction: row;
       justify-content: space-around;
       flex-wrap: nowrap;
-      padding: 2rem;
-      div {
-        min-width: 35rem;
-        height: 15rem;
+      padding: 1rem;
+
+      .panel {
+        min-width: 28%;
+        min-height: 12rem;
+        padding: 1rem;
         background-color: #c9d6df;
         border-radius: 1rem;
         box-shadow: 8px 8px 8px rgb(181, 181, 181);
@@ -96,7 +108,7 @@
 
         h4 {
           text-align: center;
-          padding: 3rem;
+          padding: 1rem;
           font-size: 2rem;
         }
 
@@ -122,6 +134,48 @@
         left: 50%;
         transform: translateX(-50%);
         background-color: #000;
+      }
+    }
+  }
+  @media (max-width: 600px) {
+    padding-top: $navHeightWithoutTopBar;
+  }
+}
+
+@media (max-width: 1024px) {
+  .root {
+    .aboutUs {
+      .panels {
+        .panel {
+          width: 31%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .root {
+    .aboutUs {
+      .panels {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+
+        .panel {
+          display: flex;
+          flex-direction: column;
+          width: 80%;
+          min-height: 15rem;
+          margin-bottom: 2rem;
+          justify-content: center;
+          align-items: center;
+
+          h4 {
+            padding-bottom: 3rem;
+          }
+        }
       }
     }
   }

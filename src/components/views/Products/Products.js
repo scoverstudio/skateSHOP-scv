@@ -61,8 +61,6 @@ const Products = ({ title, style }) => {
     ],
   };
 
-  console.log(products);
-
   return (
     <section className={styles.root}>
       <h3>{title}</h3>
@@ -105,7 +103,7 @@ const Products = ({ title, style }) => {
 
 Products.propTypes = {
   products: PropTypes.array,
-  title: PropTypes.object,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   style: PropTypes.string,
 };
 export default Products;

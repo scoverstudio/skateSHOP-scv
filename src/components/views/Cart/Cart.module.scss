@@ -157,6 +157,9 @@
               -webkit-appearance: none;
               margin: 0;
             }
+            @media (max-width: 1110px) {
+              margin-bottom: 2rem;
+            }
           }
 
           .price {
@@ -164,6 +167,9 @@
             width: 100%;
             font-size: 2rem;
             font-weight: 600;
+          }
+          @media (max-width: 1110px) {
+            justify-content: center;
           }
         }
       }
@@ -231,6 +237,10 @@
         .checkout {
           margin: 2rem 2rem 0;
         }
+      }
+
+      @media (max-width: 1024px) {
+        min-width: 50rem;
       }
     }
   }
