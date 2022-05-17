@@ -1,5 +1,6 @@
 @import "../../../styles/global.scss";
 @import "../../../styles/settings.scss";
+@import "../../../animations/skaterAnimation.scss";
 
 .root {
   flex: 1 0 auto;
@@ -10,7 +11,7 @@
 
   .navigation {
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     width: 100%;
     background-color: #1e2022;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4);
@@ -116,6 +117,7 @@
     }
   }
   footer {
+    position: relative;
     flex-shrink: 0;
     height: $footerHeigth;
     width: 100%;
@@ -126,6 +128,69 @@
       font-size: 1.5rem;
       padding: 1.5rem;
       color: #f0f5f9;
+    }
+
+    .left {
+      position: absolute;
+      height: 10rem;
+      width: 8rem;
+      background-color: #1e2022;
+      top: -5rem;
+      left: 0;
+
+      &::after {
+        content: "";
+        position: absolute;
+        right: -5rem;
+        top: -5rem;
+        width: 10rem;
+        height: 10rem;
+        background-color: white;
+        border-radius: 50%;
+      }
+    }
+
+    .right {
+      position: absolute;
+      height: 10rem;
+      width: 8rem;
+      background-color: #1e2022;
+      top: -5rem;
+      right: 0;
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: -5rem;
+        top: -5rem;
+        width: 10rem;
+        height: 10rem;
+        background-color: white;
+        border-radius: 50%;
+      }
+    }
+
+    .skater {
+      position: absolute;
+      top: -$footerHeigth;
+      left: 10%;
+      height: 5rem;
+      width: 5rem;
+      background-image: url("../../../../public/images/skater.png");
+      background-size: cover;
+
+      @media (max-width: 2560px) {
+        animation: skater-move-1920px 5s forwards linear infinite;
+      }
+      @media (max-width: 1680px) {
+        animation: skater-move-1680px 5s forwards linear infinite;
+      }
+      @media (max-width: 1024px) {
+        animation: skater-move-1024px 5s forwards linear infinite;
+      }
+      @media (max-width: 600px) {
+        animation: skater-move-600px 5s forwards linear infinite;
+      }
     }
   }
 }

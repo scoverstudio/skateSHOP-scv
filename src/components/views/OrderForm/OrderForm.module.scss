@@ -247,3 +247,103 @@
     color: rgba(255, 0, 0, 0.8);
   }
 }
+
+@media (max-width: 960px) {
+  .root {
+    .orderForm {
+      flex-wrap: wrap;
+      .shipmentInfo {
+        width: 100%;
+      }
+
+      .methods {
+        display: flex;
+        flex-direction: row;
+        padding: 5rem 5rem 0;
+
+        width: 100%;
+
+        .shippingMethod {
+          width: 50%;
+          margin: 0;
+
+          &:first-child {
+            border-bottom: none;
+          }
+        }
+
+        .paymentMethod {
+          width: 50%;
+          margin: 0;
+        }
+      }
+    }
+
+    .orderSummary {
+      .orderedProducts {
+        .summary {
+          min-width: 20rem;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .root {
+    .orderForm {
+      .methods {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        padding: 5rem 5rem 0;
+
+        width: 100%;
+
+        .shippingMethod {
+          width: 100%;
+          margin: 0;
+          margin-bottom: 2rem;
+
+          &:first-child {
+            border-bottom: none;
+          }
+        }
+
+        .paymentMethod {
+          width: 100%;
+          margin: 0;
+        }
+      }
+    }
+
+    .orderSummary {
+      .orderedProducts {
+        .descriptions {
+          p {
+            &:first-child {
+              width: 50%;
+            }
+          }
+        }
+
+        .singleProduct {
+          h4 {
+            width: 50%;
+          }
+        }
+      }
+    }
+
+    .control {
+      text-align: center;
+      width: 100%;
+      padding: 2rem;
+
+      button {
+        padding: 1.5rem 2rem;
+        text-align: center;
+      }
+    }
+  }
+}

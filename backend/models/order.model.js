@@ -24,7 +24,6 @@ const orderSchema = new mongoose.Schema({
     comments: { type: String },
   },
   items: { type: Object },
-  status: { type: String },
 });
 
 module.exports = mongoose.model("Order", orderSchema);
