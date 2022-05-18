@@ -193,14 +193,14 @@
       }
     }
   }
-}
 
-@media (max-width: 600px) {
-  .root {
-    .navigation {
-      .navContainer {
-        .topBarContainer {
-          display: none;
+  @media (max-width: 600px) {
+    .root {
+      .navigation {
+        .navContainer {
+          .topBarContainer {
+            display: none;
+          }
         }
       }
     }
