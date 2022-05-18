@@ -77,9 +77,7 @@ const MainLayout = ({ children }) => {
         <p>SkateShop COPYRIGHT &copy;</p>
         <div className={styles.left}></div>
         <div className={styles.right}></div>
-        <div className={styles.skater}>
-          {/* <img alt="skater" src="../../../../public/images/skater.png" /> */}
-        </div>
+        <div className={styles.skater}></div>
       </footer>
     </div>
   );
