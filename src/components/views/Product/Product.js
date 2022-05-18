@@ -3,10 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { handleProductAdd } from "../../../helpers/handleProductAdd";
 import { getAllProductsInCart } from "../../../redux/cartRedux";
-import {
-  fetchProductById,
-  fetchProductByProducer,
-} from "../../../redux/productsRedux";
+import { fetchProductById } from "../../../redux/productsRedux";
 import Button from "../../common/Button/Button";
 import Products from "../Products/Products";
 import styles from "./Product.module.scss";
@@ -14,7 +11,6 @@ import styles from "./Product.module.scss";
 const Product = () => {
   const { id, producer } = useParams();
   const [product, setProduct] = useState();
-  const [productsByProducer, setProductsByProducer] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
 
@@ -22,7 +18,6 @@ const Product = () => {
 
   useEffect(() => {
     dispatch(fetchProductById(id, producer, setProduct, setIsLoading));
-    dispatch(fetchProductByProducer(producer, setProductsByProducer));
   }, [dispatch, id, producer]);
 
   if (isLoading) {
@@ -65,8 +60,7 @@ const Product = () => {
           </div>
         </div>
         <Products
-          style={styles.productsByProducer}
-          products={productsByProducer}
+          style={styles.productsInSingleProduct}
           title="Check out other products"
         />
       </div>
