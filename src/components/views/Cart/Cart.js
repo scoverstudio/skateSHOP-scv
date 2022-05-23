@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
+  addComment,
   decrement,
   getAllProductsInCart,
   getFreeDeliveryPrice,
@@ -40,11 +41,17 @@ const Cart = () => {
     dispatch(totalPriceChange(id));
   };
 
-  const checkIfEmpty = (length) => {
+  const checkoutActions = (length) => {
     if (length === 0) {
       setIfEmpty(true);
     } else {
       setIfEmpty(false);
+    }
+  };
+
+  const optionalCommentAdd = (id, comment) => {
+    if (comment) {
+      dispatch(addComment({ id, comment }));
     }
   };
 
@@ -75,6 +82,14 @@ const Cart = () => {
                     <p>Producer: {cartProduct.producer}</p>
                     <p>Gender: {cartProduct.gender}</p>
                     <p>Size: {cartProduct.size}</p>
+                  </div>
+                  <div className={styles.productComment}>
+                    <h4>Add comment to product: (optional)</h4>
+                    <textarea
+                      onChange={(e) =>
+                        optionalCommentAdd(cartProduct.id, e.target.value)
+                      }
+                    />
                   </div>
                   <div className={styles.productActions}>
                     <div
@@ -154,7 +169,7 @@ const Cart = () => {
             </div>
             <Link to={cartProducts.length !== 0 ? "/order" : "/cart"}>
               <Button
-                onClick={() => checkIfEmpty(cartProducts.length)}
+                onClick={() => checkoutActions(cartProducts.length)}
                 style={styles.checkout}
                 text="PROCCED TO CHECKOUT"
               />

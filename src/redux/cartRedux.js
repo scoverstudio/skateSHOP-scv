@@ -14,6 +14,7 @@ const createActionName = (name) => `app/${reducerName}/${name}`;
 /* action types */
 const ADD_PRODUCT = createActionName("ADD_PRODUCT");
 const ADD_PRODUCT_LS = createActionName("ADD_PRODUCT_LS");
+const ADD_COMMENT = createActionName("ADD_COMMENT");
 const REMOVE_PRODUCT = createActionName("REMOVE_PRODUCT");
 const CLEAR_CART = createActionName("CLEAR_CART");
 const INCREMENT = createActionName("INCREMENT");
@@ -24,6 +25,7 @@ const QUANTITY_CHANGE = createActionName("QUANTITY_CHANGE");
 /* action creators */
 export const addProduct = (payload) => ({ payload, type: ADD_PRODUCT });
 export const addProductLS = (payload) => ({ payload, type: ADD_PRODUCT_LS });
+export const addComment = (payload) => ({ payload, type: ADD_COMMENT });
 export const changeQuantity = (payload) => ({ payload, type: QUANTITY_CHANGE });
 export const removeProduct = (payload) => ({ payload, type: REMOVE_PRODUCT });
 export const clearCart = (payload) => ({ payload, type: CLEAR_CART });
@@ -58,6 +60,18 @@ export const cartReducer = (statePart = [], action = {}) => {
       return {
         ...statePart,
         products: [...action.payload],
+      };
+    }
+    case ADD_COMMENT: {
+      return {
+        ...statePart,
+        cart: [
+          statePart.products.find((product) =>
+            product.id === action.payload.id
+              ? (product.comment = action.payload.comment)
+              : (product.comment = "")
+          ),
+        ],
       };
     }
     case QUANTITY_CHANGE: {
