@@ -53,6 +53,7 @@ const Cart = () => {
     if (comment) {
       dispatch(addComment({ id, comment }));
     }
+    // console.log(id, comment);
   };
 
   return (
@@ -86,7 +87,7 @@ const Cart = () => {
                   <div className={styles.productComment}>
                     <h4>Add comment to product: (optional)</h4>
                     <textarea
-                      onChange={(e) =>
+                      onBlur={(e) =>
                         optionalCommentAdd(cartProduct.id, e.target.value)
                       }
                     />

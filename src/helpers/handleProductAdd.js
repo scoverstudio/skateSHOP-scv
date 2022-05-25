@@ -1,6 +1,5 @@
 import { addProduct, increment, totalPriceChange } from "../redux/cartRedux";
 
-
 export const handleProductAdd = (product, cartProducts, dispatch) => {
   const productAlreadyInCart = cartProducts.find(
     (item) => item.id === product.id
@@ -16,7 +15,12 @@ export const handleProductAdd = (product, cartProducts, dispatch) => {
     }
   } else {
     dispatch(
-      addProduct({ ...product, totalPrice: product.price, quantity: 1 })
+      addProduct({
+        ...product,
+        totalPrice: product.price,
+        quantity: 1,
+        comment: "",
+      })
     );
   }
 };

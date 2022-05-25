@@ -65,13 +65,11 @@ export const cartReducer = (statePart = [], action = {}) => {
     case ADD_COMMENT: {
       return {
         ...statePart,
-        cart: [
-          statePart.products.find((product) =>
-            product.id === action.payload.id
-              ? (product.comment = action.payload.comment)
-              : (product.comment = "")
-          ),
-        ],
+        products: statePart.products.map((product) =>
+          product.id === action.payload.id
+            ? { ...product, comment: action.payload.comment }
+            : product
+        ),
       };
     }
     case QUANTITY_CHANGE: {
