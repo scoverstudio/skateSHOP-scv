@@ -92,8 +92,7 @@ const MainLayout = ({ children }) => {
                   onFocus={() => setShowInput(true)}
                   onBlur={() => {
                     setInputValue("");
-                    setFilteredProducts([]);
-                    setActiveInput("active");
+                    setFilteredProducts(null);
                     setShowInput(false);
                   }}
                   value={inputValue}
