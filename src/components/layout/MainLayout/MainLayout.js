@@ -16,6 +16,7 @@ import {
 } from "../../../redux/cartRedux";
 import { getAllProducts } from "../../../redux/productsRedux";
 import clsx from "clsx";
+import e from "cors";
 
 const MainLayout = ({ children }) => {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ const MainLayout = ({ children }) => {
   const [filteredProducts, setFilteredProducts] = useState(null);
   const [activeInput, setActiveInput] = useState(null);
   const [showInput, setShowInput] = useState(false);
+  const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
     dispatch(fetchCartFromLocalStorage());
@@ -40,6 +42,7 @@ const MainLayout = ({ children }) => {
 
   const searchProduct = (e, input) => {
     e.preventDefault();
+    setInputValue(input);
 
     if (input) {
       let filteredProducts = products.filter(
@@ -57,7 +60,7 @@ const MainLayout = ({ children }) => {
       setActiveInput("none");
     }
   };
-  console.log(showInput);
+
   return (
     <div className={styles.root}>
       <nav className={styles.navigation}>
@@ -82,20 +85,18 @@ const MainLayout = ({ children }) => {
               <h1 className={styles.logo}>SkateSHOP</h1>
             </Link>
             <div className={styles.routes}>
-              <div className={styles.searchContainer}>
-                <FontAwesomeIcon
-                  className={styles.icon}
-                  icon={faSearch}
-                  onClick={() => {
-                    setShowInput(true);
-                  }}
-                />
-
+              <form className={styles.searchContainer}>
                 <input
                   type="text"
                   onChange={(e) => searchProduct(e, e.target.value)}
-                  onBlur={() => setShowInput(false)}
                   onFocus={() => setShowInput(true)}
+                  onBlur={() => {
+                    setInputValue("");
+                    setFilteredProducts([]);
+                    setActiveInput("active");
+                    setShowInput(false);
+                  }}
+                  value={inputValue}
                   className={clsx(showInput === true && "active")}
                 />
                 {showInput && (
@@ -108,11 +109,19 @@ const MainLayout = ({ children }) => {
                     {filteredProducts && filteredProducts.length !== 0 ? (
                       filteredProducts.map((product, index) => (
                         <Link
-                          to="/"
+                          to={`/products/${product.producer}/${product._id}`}
                           key={index}
                           className={styles.searchedProduct}
                         >
-                          {product.name}
+                          <img
+                            alt={product.name}
+                            className={styles.image}
+                            src={`${process.env.PUBLIC_URL}/images/${product.id}.jpg`}
+                          />
+                          <div className={styles.content}>
+                            <h2>{product.name}</h2>
+                            <p className={styles.price}>{product.price} $</p>
+                          </div>
                         </Link>
                       ))
                     ) : filteredProducts && activeInput !== "active" ? (
@@ -122,7 +131,17 @@ const MainLayout = ({ children }) => {
                     ) : null}
                   </div>
                 )}
-              </div>
+                <FontAwesomeIcon
+                  className={clsx(
+                    styles.icon,
+                    showInput === true && styles.active
+                  )}
+                  icon={faSearch}
+                  onClick={() => {
+                    setShowInput(true);
+                  }}
+                />
+              </form>
               <ul>
                 <li>
                   <NavLink to="/">
