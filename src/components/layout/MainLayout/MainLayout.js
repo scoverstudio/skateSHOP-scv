@@ -82,8 +82,8 @@ const MainLayout = ({ children }) => {
                 <input
                   type="text"
                   onChange={(e) => searchProduct(e, e.target.value)}
-                  onBlur={() => setShowInput(false)}
-                  onFocus={() => setShowInput(true)}
+                  // onBlur={() => setShowInput(false)}
+                  // onFocus={() => setShowInput(true)}
                 />
                 {showInput && (
                   <div
