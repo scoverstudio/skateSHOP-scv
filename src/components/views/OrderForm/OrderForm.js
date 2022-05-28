@@ -212,8 +212,12 @@ const OrderForm = ({ orderRequest }) => {
           </fieldset>
           <fieldset>
             <h3>Shipment informations</h3>
-            <label htmlFor="shipmentName">Name</label>
-            <label htmlFor="shipmentSurname">Surname</label>
+            <label htmlFor="shipmentName">
+              Name <span className={styles.required}>*</span>
+            </label>
+            <label htmlFor="shipmentSurname">
+              Surname <span className={styles.required}>*</span>
+            </label>
             <input
               {...register("shipmentName", {
                 required: {
