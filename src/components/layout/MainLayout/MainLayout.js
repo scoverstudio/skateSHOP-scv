@@ -3,7 +3,11 @@ import PropTypes from "prop-types";
 import styles from "./MainLayout.module.scss";
 import { Link, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping, faHeart } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCartShopping,
+  faHeart,
+  faSearch,
+} from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchCartFromLocalStorage,
@@ -53,7 +57,7 @@ const MainLayout = ({ children }) => {
       setActiveInput("none");
     }
   };
-
+  console.log(showInput);
   return (
     <div className={styles.root}>
       <nav className={styles.navigation}>
@@ -79,17 +83,26 @@ const MainLayout = ({ children }) => {
             </Link>
             <div className={styles.routes}>
               <div className={styles.searchContainer}>
+                <FontAwesomeIcon
+                  className={styles.icon}
+                  icon={faSearch}
+                  onClick={() => {
+                    setShowInput(true);
+                  }}
+                />
+
                 <input
                   type="text"
                   onChange={(e) => searchProduct(e, e.target.value)}
-                  // onBlur={() => setShowInput(false)}
-                  // onFocus={() => setShowInput(true)}
+                  onBlur={() => setShowInput(false)}
+                  onFocus={() => setShowInput(true)}
+                  className={clsx(showInput === true && "active")}
                 />
                 {showInput && (
                   <div
                     className={clsx(
                       styles.searchedProducts,
-                      activeInput === "active" && "active"
+                      showInput === true && "active"
                     )}
                   >
                     {filteredProducts && filteredProducts.length !== 0 ? (
