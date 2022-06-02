@@ -37,6 +37,15 @@ const Homepage = () => {
           </div>
         </div>
       </section>
+      {/* <section className={styles.splineSkate}>
+        <iframe
+          src="https://my.spline.design/emojiskatecopy-c482c98884ca32397927301ee18db38c/"
+          frameBorder="0"
+          width="100%"
+          height="100%"
+          title="skate"
+        ></iframe>
+      </section> */}
     </div>
   );
 };

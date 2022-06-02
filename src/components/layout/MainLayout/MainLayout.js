@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import styles from "./MainLayout.module.scss";
 import { Link, NavLink } from "react-router-dom";
@@ -7,6 +7,7 @@ import {
   faCartShopping,
   faHeart,
   faSearch,
+  faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -16,17 +17,18 @@ import {
 } from "../../../redux/cartRedux";
 import { getAllProducts } from "../../../redux/productsRedux";
 import clsx from "clsx";
-import e from "cors";
 
 const MainLayout = ({ children }) => {
   const dispatch = useDispatch();
   const productsInCart = useSelector(getCount);
   const cartProducts = useSelector(getAllProductsInCart);
   const products = useSelector(getAllProducts);
+
   const [filteredProducts, setFilteredProducts] = useState(null);
   const [activeInput, setActiveInput] = useState(null);
   const [showInput, setShowInput] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const [showTopBar, setShowTopBar] = useState(true);
 
   useEffect(() => {
     dispatch(fetchCartFromLocalStorage());
@@ -61,11 +63,31 @@ const MainLayout = ({ children }) => {
     }
   };
 
+  const controlNavbar = () => {
+    if (window.scrollY > 31) {
+      setShowTopBar(false);
+    } else {
+      setShowTopBar(true);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", controlNavbar);
+    return () => {
+      window.removeEventListener("scroll", controlNavbar);
+    };
+  }, []);
+
   return (
     <div className={styles.root}>
       <nav className={styles.navigation}>
         <div className={styles.navContainer}>
-          <div className={styles.topBarContainer}>
+          <div
+            className={clsx(
+              styles.topBarContainer,
+              showTopBar && styles.showTopBar
+            )}
+          >
             <div className={styles.topBarContent}>
               <div className={styles.info}>
                 <Link to="/help">help</Link>
@@ -84,22 +106,35 @@ const MainLayout = ({ children }) => {
             <Link to="/">
               <h1 className={styles.logo}>SkateSHOP</h1>
             </Link>
+            <div className={styles.categories}>
+              <ul>
+                <li>
+                  <Link to="#">Categories</Link>
+                </li>
+                <li>
+                  <Link to="#">News</Link>
+                </li>
+                <li>
+                  <Link to="#">Brands</Link>
+                </li>
+                <li>
+                  <Link to="#">Sales</Link>
+                </li>
+              </ul>
+            </div>
             <div className={styles.routes}>
               <form className={styles.searchContainer}>
                 <input
                   type="text"
                   onChange={(e) => searchProduct(e, e.target.value)}
                   onFocus={() => setShowInput(true)}
-                  onBlur={() => {
-                    setInputValue("");
-                    setFilteredProducts(null);
-                    setShowInput(false);
-                  }}
+                  id="inputSearch"
                   value={inputValue}
-                  className={clsx(showInput === true && "active")}
+                  className={clsx(showInput === true && styles.active)}
                 />
                 {showInput && (
                   <div
+                    id="inputSearch"
                     className={clsx(
                       styles.searchedProducts,
                       showInput === true && "active"
@@ -109,6 +144,11 @@ const MainLayout = ({ children }) => {
                       filteredProducts.map((product, index) => (
                         <Link
                           to={`/products/${product.producer}/${product._id}`}
+                          onClick={() => {
+                            setShowInput(false);
+                            setInputValue("");
+                            setFilteredProducts(null);
+                          }}
                           key={index}
                           className={styles.searchedProduct}
                         >
@@ -140,6 +180,20 @@ const MainLayout = ({ children }) => {
                     setShowInput(true);
                   }}
                 />
+                {showInput && (
+                  <FontAwesomeIcon
+                    className={clsx(
+                      styles.iconCross,
+                      showInput === true && styles.active
+                    )}
+                    icon={faTimes}
+                    onClick={() => {
+                      setShowInput(false);
+                      setInputValue("");
+                      setFilteredProducts(null);
+                    }}
+                  />
+                )}
               </form>
               <ul>
                 <li>
