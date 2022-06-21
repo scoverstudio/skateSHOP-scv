@@ -17,18 +17,24 @@ import {
 } from "../../../redux/cartRedux";
 import { getAllProducts } from "../../../redux/productsRedux";
 import clsx from "clsx";
+import TopBar from "../../views/TopBar/TopBar";
+import { getAllCategories } from "../../../redux/categoriesRedux";
+import { getAllCategoryNames } from "../../../redux/categoryNames";
 
 const MainLayout = ({ children }) => {
   const dispatch = useDispatch();
   const productsInCart = useSelector(getCount);
   const cartProducts = useSelector(getAllProductsInCart);
   const products = useSelector(getAllProducts);
+  const categoryNames = useSelector(getAllCategoryNames);
+  const categories = useSelector(getAllCategories);
+
+  console.log(categoryNames, categories);
 
   const [filteredProducts, setFilteredProducts] = useState(null);
   const [activeInput, setActiveInput] = useState(null);
   const [showInput, setShowInput] = useState(false);
   const [inputValue, setInputValue] = useState("");
-  const [showTopBar, setShowTopBar] = useState(true);
 
   useEffect(() => {
     dispatch(fetchCartFromLocalStorage());
@@ -63,45 +69,11 @@ const MainLayout = ({ children }) => {
     }
   };
 
-  const controlNavbar = () => {
-    if (window.scrollY > 31) {
-      setShowTopBar(false);
-    } else {
-      setShowTopBar(true);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", controlNavbar);
-    return () => {
-      window.removeEventListener("scroll", controlNavbar);
-    };
-  }, []);
-
   return (
     <div className={styles.root}>
       <nav className={styles.navigation}>
         <div className={styles.navContainer}>
-          <div
-            className={clsx(
-              styles.topBarContainer,
-              showTopBar && styles.showTopBar
-            )}
-          >
-            <div className={styles.topBarContent}>
-              <div className={styles.info}>
-                <Link to="/help">help</Link>
-                <Link to="/contact">contact</Link>
-                <Link to="/about">about us</Link>
-              </div>
-              <div className={styles.freeDelivery}>
-                <Link to="/cart">Free delivery from 150$</Link>
-              </div>
-              <div className={styles.return}>
-                <Link to="/cart">returns and complaints</Link>
-              </div>
-            </div>
-          </div>
+          <TopBar />
           <div className={styles.navContent}>
             <Link to="/">
               <h1 className={styles.logo}>SkateSHOP</h1>
@@ -212,6 +184,22 @@ const MainLayout = ({ children }) => {
                 </li>
               </ul>
             </div>
+          </div>
+          <div className={styles.categoriess}>
+            {categoryNames.map((categoryName) => (
+              <div key={categoryName} className={styles.category}>
+                <h3>{categoryName}</h3>
+                <ul>
+                  {categories.map((category) =>
+                    category.id === categoryName
+                      ? category.elements.map((element) => (
+                        <li key={element}>{element}</li>
+                      ))
+                      : null
+                  )}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
       </nav>

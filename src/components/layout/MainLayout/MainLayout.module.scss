@@ -17,38 +17,6 @@
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4);
 
     .navContainer {
-      .topBarContainer {
-        height: 0;
-        background-color: #26292c;
-        width: 100%;
-        transition: 0.1s ease-in;
-        overflow: hidden;
-
-        .topBarContent {
-          display: flex;
-          justify-content: space-between;
-          padding: 0.8rem 2rem;
-          margin: 0 auto;
-          width: 100%;
-          max-width: 1720px;
-
-          div {
-            a {
-              color: #f0f5f9;
-              font-size: 1.2rem;
-              margin-right: 0.5rem;
-              text-transform: uppercase;
-              text-decoration: none;
-              border-bottom: 0.1rem solid #f0f5f9;
-            }
-          }
-        }
-
-        &.showTopBar {
-          height: 3rem;
-        }
-      }
-
       .navContent {
         background-color: #1e2022;
         width: 100%;
@@ -333,6 +301,15 @@
           }
         }
       }
+      .categoriess {
+        color: white;
+        .category {
+          ul {
+            li {
+            }
+          }
+        }
+      }
     }
   }
   footer {
@@ -409,18 +386,6 @@
       }
       @media (max-width: 600px) {
         animation: skater-move-600px 4s forwards linear infinite;
-      }
-    }
-  }
-}
-
-@media (max-width: 600px) {
-  .root {
-    .navigation {
-      .navContainer {
-        .topBarContainer {
-          display: none;
-        }
       }
     }
   }

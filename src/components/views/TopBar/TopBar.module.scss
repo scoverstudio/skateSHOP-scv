@@ -1,0 +1,43 @@
+.topBarContainer {
+  height: 0;
+  background-color: #26292c;
+  width: 100%;
+  transition: 0.1s ease-in;
+  overflow: hidden;
+
+  .topBarContent {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.8rem 2rem;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1720px;
+
+    div {
+      a {
+        color: #f0f5f9;
+        font-size: 1.2rem;
+        margin-right: 0.5rem;
+        text-transform: uppercase;
+        text-decoration: none;
+        border-bottom: 0.1rem solid #f0f5f9;
+      }
+    }
+  }
+
+  &.showTopBar {
+    height: 3rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .root {
+    .navigation {
+      .navContainer {
+        .topBarContainer {
+          display: none;
+        }
+      }
+    }
+  }
+}
