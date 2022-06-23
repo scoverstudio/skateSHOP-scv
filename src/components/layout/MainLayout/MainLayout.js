@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import styles from "./MainLayout.module.scss";
@@ -29,12 +30,11 @@ const MainLayout = ({ children }) => {
   const categoryNames = useSelector(getAllCategoryNames);
   const categories = useSelector(getAllCategories);
 
-  console.log(categoryNames, categories);
-
   const [filteredProducts, setFilteredProducts] = useState(null);
   const [activeInput, setActiveInput] = useState(null);
   const [showInput, setShowInput] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const [categoriesActive, setCategoriesActive] = useState(false);
 
   useEffect(() => {
     dispatch(fetchCartFromLocalStorage());
@@ -80,7 +80,13 @@ const MainLayout = ({ children }) => {
             </Link>
             <div className={styles.categories}>
               <ul>
-                <li>
+                <li
+                  onClick={() =>
+                    setCategoriesActive(
+                      categoriesActive === true ? false : true
+                    )
+                  }
+                >
                   <Link to="#">Categories</Link>
                 </li>
                 <li>
@@ -185,7 +191,14 @@ const MainLayout = ({ children }) => {
               </ul>
             </div>
           </div>
-          <div className={styles.categoriess}>
+          <div
+            className={clsx(
+              styles.categoriess,
+              categoriesActive === true && styles.active
+            )}
+            // onMouseOver={() => setCategoriesActive(true)}
+            // onMouseOut={() => setCategoriesActive(false)}
+          >
             {categoryNames.map((categoryName) => (
               <div key={categoryName} className={styles.category}>
                 <h3>{categoryName}</h3>
@@ -193,8 +206,19 @@ const MainLayout = ({ children }) => {
                   {categories.map((category) =>
                     category.id === categoryName
                       ? category.elements.map((element) => (
-                        <li key={element}>{element}</li>
-                      ))
+                          <li key={element}>
+                            <Link
+                              to={`/${categoryName}/${element}`}
+                              onClick={() =>
+                                setCategoriesActive(
+                                  categoriesActive === false ? true : false
+                                )
+                              }
+                            >
+                              {element}
+                            </Link>
+                          </li>
+                        ))
                       : null
                   )}
                 </ul>

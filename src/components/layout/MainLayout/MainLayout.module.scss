@@ -19,9 +19,9 @@
     .navContainer {
       .navContent {
         background-color: #1e2022;
+        position: relative;
         width: 100%;
-        // position: fixed;
-        // top: 0;
+        box-shadow: 0 5px 5px -4px rgba(0, 0, 0, 0.4);
         display: flex;
         justify-content: space-between;
         margin: 0 auto;
@@ -301,11 +301,46 @@
           }
         }
       }
-      .categoriess {
-        color: white;
-        .category {
-          ul {
-            li {
+    }
+  }
+  .categoriess {
+    display: flex;
+    color: white;
+    background-color: #1e2022;
+    width: 1720px;
+    margin: 0 auto;
+    height: 0;
+    overflow: hidden;
+    transition: 0.1s;
+    z-index: 2;
+
+    &.active {
+      height: 16.5rem;
+    }
+
+    .category {
+      padding: 2rem;
+
+      h3 {
+        font-size: 1.8rem;
+        text-transform: uppercase;
+        border-bottom: 0.1rem solid #f0f5f9;
+        margin-bottom: 0.5rem;
+      }
+
+      ul {
+        list-style: none;
+
+        li {
+          font-size: 1.4rem;
+          margin-bottom: 0.1rem;
+
+          a {
+            color: #f0f5f9;
+            text-decoration: none;
+
+            &:hover {
+              text-decoration: underline;
             }
           }
         }

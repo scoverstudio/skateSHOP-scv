@@ -1,39 +1,16 @@
 const initialState = {
-  // categories: {
-  //   skateboard: [
-  //     { id: "decks", name: "decks", category: "skateboard" },
-  //     { id: "wheels", name: "wheels", category: "skateboard" },
-  //     { id: "bearings", name: "bearings", category: "skateboard" },
-  //     { id: "tracks", name: "tracks", category: "skateboard" },
-  //     { id: "grips", name: "grips", category: "skateboard" },
-  //   ],
-  //   tshirts: [
-  //     { id: "top", name: "top", category: "tshirt" },
-  //     { id: "oversize", name: "oversize", category: "tshirt" },
-  //     { id: "shorts", name: "shorts", category: "tshirt" },
-  //   ],
-  //   categoryName: ["skateboard", "tshirt"],
-  // },
-
   categories: [
     {
-      id: "skateboard",
+      id: "skateboards",
       elements: ["decks", "wheels", "bearings", "tracks", "grips"],
     },
     {
-      id: "tshirt",
-      elements: ["top", "oversize", "shorts"],
+      id: "tshirts",
+      elements: ["tops", "oversizes", "shorts"],
     },
-    // {
-    //   tshirts: [
-    //     { id: "top", name: "top", category: "tshirt" },
-    //     { id: "oversize", name: "oversize", category: "tshirt" },
-    //     { id: "shorts", name: "shorts", category: "tshirt" },
-    //   ],
-    // },
   ],
 
-  categoryNames: ["skateboard", "tshirt"],
+  categoryNames: ["skateboards", "tshirts"],
 
   products: [],
   cart: {
