@@ -8,6 +8,7 @@
   .headerContainer {
     padding: 3rem 15rem 2rem;
     width: 100%;
+    height: 90rem;
     background: rgb(30, 32, 34);
     background: linear-gradient(
       180deg,
@@ -86,7 +87,7 @@
       .imageContainer {
         position: relative;
         width: 35%;
-        min-width: 45rem;
+        min-width: 52rem;
         .skaterImage {
           transform: scaleX(-1);
           width: 100%;
