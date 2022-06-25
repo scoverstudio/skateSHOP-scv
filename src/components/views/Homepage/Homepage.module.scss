@@ -3,91 +3,107 @@
 .root {
   width: 100%;
   padding-top: $navHeight;
-  max-width: 1500px;
   margin: 0 auto;
 
-  .header {
-    position: relative;
-    text-align: center;
-    margin: 2.5rem 0;
-    height: 55rem;
-    background-color: #c9d6df;
-    overflow: hidden;
-    background-image: url("../../../../public/images/headerImage.jpg");
-    background-size: cover;
+  .headerContainer {
+    padding: 3rem 15rem 2rem;
+    width: 100%;
+    background: rgb(30, 32, 34);
+    background: linear-gradient(
+      180deg,
+      rgba(30, 32, 34, 1) 0%,
+      rgba(30, 32, 34, 1) 6%,
+      rgba(255, 255, 255, 1) 100%
+    );
 
-    .banner {
-      padding: 5rem;
-      position: relative;
-      height: 100%;
-      width: 100%;
-      background-color: rgba(0, 0, 0, 0.4);
+    .headerPanels {
+      display: flex;
+      max-width: 1500px;
+      margin: 0 auto;
 
-      .bannerText {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        width: fit-content;
-        margin: 0 auto;
-        font-size: 5rem;
-        color: white;
+      .contentContainer {
+        position: relative;
+        width: 65%;
+        margin-top: 6rem;
 
-        span {
-          font-style: italic;
-          font-weight: lighter;
-          font-size: 4rem;
+        h2 {
+          font-family: "JetBrains Mono", monospace;
+          padding: 0;
+          font-size: 8rem;
+          letter-spacing: 0.3rem;
+          margin-bottom: 2rem;
+          min-width: 90rem;
+          text-shadow: 4px 4px 4px #343638;
+
+          span {
+            font-size: 12rem;
+            letter-spacing: 1rem;
+
+            text-transform: uppercase;
+            font-weight: 500;
+          }
         }
 
-        &::after {
-          content: "";
+        .control {
           position: absolute;
-          height: 0.2rem;
-          width: 90%;
-          bottom: -0.5rem;
-          left: 50%;
-          transform: translateX(-50%);
-          background-color: #000;
+          bottom: 8rem;
+          text-align: left;
+          margin-left: 0.3rem;
+
+          .buttonLeft {
+            margin-right: 3rem;
+            background-color: #1e2022;
+            color: white;
+            font-weight: 600;
+            border: 0.3rem solid #1e2022;
+
+            &:hover {
+              background-color: #1e2022;
+              color: white;
+            }
+          }
+          .buttonRight {
+            border: 0.3rem solid #1e2022;
+            font-weight: 600;
+            border-radius: 5rem;
+            border: 0.3rem solid #F46200;
+
+
+            &:hover {
+              background-color: #F46200;
+              color: white;
+            }
+          }
+
+          .buttonLeft,
+          .buttonRight {
+            letter-spacing: 0.3rem;
+            padding: 1.5rem 3rem;
+            cursor: pointer;
+          }
         }
       }
-    }
-    &::after {
-      content: "";
-      position: absolute;
-      height: 4rem;
-      width: 30rem;
-      bottom: 2rem;
-      left: -7rem;
-      transform: rotate(30deg);
-      background-color: #000;
-    }
-    &::before {
-      content: "";
-      position: absolute;
-      height: 4rem;
-      width: 30rem;
-      bottom: 2rem;
-      right: -7rem;
-      transform: rotate(-30deg);
-      background-color: #000;
-    }
-
-    @media (max-width: 1500px) {
-      margin: 2.5rem;
-    }
-
-    @media (max-width: 1000px) {
-      margin: 0rem;
-    }
-
-    @media (max-width: 600px) {
-      background-repeat: repeat;
-      background-position: -10rem;
-    }
-
-    @media (max-width: 420px) {
-      background-repeat: repeat;
-      background-position: -20rem;
+      .imageContainer {
+        position: relative;
+        width: 35%;
+        min-width: 45rem;
+        .skaterImage {
+          transform: scaleX(-1);
+          width: 100%;
+          animation: floating 3s linear infinite;
+        }
+        &::before {
+          content: "";
+          position: absolute;
+          left: 5px;
+          bottom: 1rem;
+          height: 5rem;
+          width: 100%;
+          background-color: rgba(0, 0, 0, 0.6);
+          z-index: 0;
+          border-radius: 50%;
+        }
+      }
     }
   }
 
@@ -120,10 +136,10 @@
           padding: 2rem;
           transform: translateX(-50%);
           transition: 0.2s;
-          background-color: #1e2022;
+          background-color: #F46200;
 
           border-radius: 50%;
-          box-shadow: 0px 0px 10px #5c5d5d;
+          box-shadow: 0px 0px 10px #F46200;
 
           &:hover {
             font-size: 6rem;
@@ -240,5 +256,19 @@
         }
       }
     }
+  }
+}
+
+@keyframes floating {
+  0% {
+    transform: translateY(0) scaleX(-1);
+  }
+
+  50% {
+    transform: translateY(1rem) scaleX(-1);
+  }
+
+  100% {
+    transform: translateY(0) scaleX(-1);
   }
 }

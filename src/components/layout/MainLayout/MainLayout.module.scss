@@ -27,6 +27,7 @@
         margin: 0 auto;
         padding: 2rem 2.5rem 2rem;
         max-width: 1720px;
+        z-index: 1;
 
         a {
           text-decoration: none;
@@ -310,16 +311,19 @@
     width: 1720px;
     margin: 0 auto;
     height: 0;
+    padding: 0 2rem;
     overflow: hidden;
     transition: 0.1s;
     z-index: 2;
 
     &.active {
-      height: 16.5rem;
+      height: 20rem;
+      padding: 2rem;
     }
 
     .category {
       padding: 2rem;
+      border-right: 0.1rem solid #636363;
 
       h3 {
         font-size: 1.8rem;
