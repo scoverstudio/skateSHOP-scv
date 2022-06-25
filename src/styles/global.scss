@@ -44,4 +44,8 @@ section {
   margin: 0 auto;
   max-width: 1720px;
   padding-bottom: 10rem;
+
+  &:last-child {
+    padding-bottom: 13rem;
+  }
 }

@@ -196,8 +196,8 @@ const MainLayout = ({ children }) => {
               styles.categoriess,
               categoriesActive === true && styles.active
             )}
-            // onMouseOver={() => setCategoriesActive(true)}
-            // onMouseOut={() => setCategoriesActive(false)}
+            onMouseOver={() => setCategoriesActive(true)}
+            onMouseOut={() => setCategoriesActive(false)}
           >
             {categoryNames.map((categoryName) => (
               <div key={categoryName} className={styles.category}>
