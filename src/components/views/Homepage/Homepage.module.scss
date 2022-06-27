@@ -8,7 +8,6 @@
   .headerContainer {
     padding: 3rem 15rem 2rem;
     width: 100%;
-    height: 90rem;
     background: rgb(30, 32, 34);
     background: linear-gradient(
       180deg,
@@ -19,6 +18,7 @@
 
     .headerPanels {
       display: flex;
+      justify-content: center;
       max-width: 1500px;
       margin: 0 auto;
 
@@ -46,10 +46,9 @@
         }
 
         .control {
-          position: absolute;
-          bottom: 8rem;
           text-align: left;
           margin-left: 0.3rem;
+          padding: 2rem 0;
 
           .buttonLeft {
             margin-right: 3rem;
@@ -67,11 +66,10 @@
             border: 0.3rem solid #1e2022;
             font-weight: 600;
             border-radius: 5rem;
-            border: 0.3rem solid #F46200;
-
+            border: 0.3rem solid #f46200;
 
             &:hover {
-              background-color: #F46200;
+              background-color: #f46200;
               color: white;
             }
           }
@@ -137,10 +135,10 @@
           padding: 2rem;
           transform: translateX(-50%);
           transition: 0.2s;
-          background-color: #F46200;
+          background-color: #f46200;
 
           border-radius: 50%;
-          box-shadow: 0px 0px 10px #F46200;
+          box-shadow: 0px 0px 10px #f46200;
 
           &:hover {
             font-size: 6rem;
@@ -200,6 +198,40 @@
   }
 }
 
+@media (max-width: 1600px) {
+  .root {
+    .headerContainer {
+      padding: 0rem 10rem;
+
+      .headerPanels {
+        .contentContainer {
+          width: 60%;
+          h2 {
+            font-size: 7rem;
+            span {
+              font-size: 10rem;
+            }
+          }
+          .control {
+            bottom: 0;
+          }
+        }
+
+        .imageContainer {
+          position: relative;
+          width: 40%;
+          min-width: 30rem;
+          max-width: 40rem;
+          .skaterImage {
+          }
+          &::before {
+          }
+        }
+      }
+    }
+  }
+}
+
 @media (max-width: 1024px) {
   .root {
     padding-top: $navHeightBelow1024px;
@@ -215,6 +247,66 @@
 
 @media (max-width: 768px) {
   .root {
+    .headerContainer {
+      padding: 0rem 2rem;
+
+      .headerPanels {
+        justify-content: flex-start;
+
+        .contentContainer {
+          z-index: 1;
+          width: 60%;
+          h2 {
+            line-height: 7rem;
+            font-size: 3rem;
+            margin-bottom: 5rem;
+            span {
+              font-size: 5rem;
+            }
+          }
+          .control {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            bottom: 0;
+            width: 90vw;
+
+            .buttonLeft {
+              margin-right: 0;
+              margin-bottom: 0;
+              color: white;
+              font-weight: 600;
+              border: 0.3rem solid #1e2022;
+            }
+            .buttonRight {
+              border: 0.3rem solid #1e2022;
+              font-weight: 600;
+              border-radius: 5rem;
+              border: 0.3rem solid #f46200;
+            }
+
+            .buttonLeft,
+            .buttonRight {
+              padding: 1.5rem;
+            }
+          }
+        }
+
+        .imageContainer {
+          position: absolute;
+          width: 40%;
+          right: -10rem;
+          top: 10rem;
+          min-width: 25rem;
+          max-width: 25rem;
+          margin: 2rem 0;
+
+          &::before {
+            bottom: 0rem;
+          }
+        }
+      }
+    }
     .aboutUs {
       .panels {
         flex-direction: row;
