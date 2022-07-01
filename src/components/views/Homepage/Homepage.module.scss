@@ -33,7 +33,7 @@
           font-size: 8rem;
           letter-spacing: 0.3rem;
           margin-bottom: 2rem;
-          min-width: 90rem;
+          min-width: 90%;
           text-shadow: 4px 4px 4px #343638;
 
           span {
@@ -87,6 +87,7 @@
         width: 35%;
         min-width: 52rem;
         .skaterImage {
+          position: relative;
           transform: scaleX(-1);
           width: 100%;
           animation: floating 3s linear infinite;
@@ -205,7 +206,7 @@
 
       .headerPanels {
         .contentContainer {
-          width: 60%;
+          width: 100%;
           h2 {
             font-size: 7rem;
             span {
@@ -222,10 +223,6 @@
           width: 40%;
           min-width: 30rem;
           max-width: 40rem;
-          .skaterImage {
-          }
-          &::before {
-          }
         }
       }
     }
@@ -255,10 +252,117 @@
 
         .contentContainer {
           z-index: 1;
-          width: 60%;
+          width: 100%;
           h2 {
             line-height: 7rem;
-            font-size: 3rem;
+            font-size: 5rem;
+            margin-bottom: 5rem;
+            span {
+              font-size: 7rem;
+            }
+          }
+          .control {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: space-around;
+            bottom: 0;
+            width: 60vw;
+
+            .buttonLeft {
+              margin-right: 2rem;
+              margin-bottom: 0;
+              color: white;
+              font-weight: 600;
+              border: 0.3rem solid #1e2022;
+            }
+            .buttonRight {
+              border: 0.3rem solid #1e2022;
+              font-weight: 600;
+              border-radius: 5rem;
+              border: 0.3rem solid #f46200;
+            }
+
+            .buttonLeft,
+            .buttonRight {
+              padding: 1.5rem;
+            }
+          }
+        }
+
+        .imageContainer {
+          position: absolute;
+          width: 40%;
+          right: 0;
+          top: 15rem;
+          min-width: 25rem;
+          max-width: 25rem;
+          margin: 2rem 0;
+          overflow: hidden;
+
+          &::before {
+            bottom: 0rem;
+          }
+        }
+      }
+    }
+    .aboutUs {
+      .panels {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+
+        .panel {
+          display: flex;
+          flex-direction: column;
+          width: 80%;
+          min-height: 20rem;
+          margin-bottom: 10rem;
+          justify-content: top;
+          align-items: center;
+
+          .icon {
+            position: absolute;
+            font-size: 7rem;
+            bottom: -5rem;
+            padding: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: 0.2s;
+
+            // &:hover {
+            //   sc
+            // }
+          }
+
+          .freeDelivery {
+            bottom: -11rem;
+            width: 30%;
+            min-width: 14rem;
+          }
+
+          h4 {
+            padding-bottom: 3rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .root {
+    .headerContainer {
+      padding: 0rem 2rem;
+
+      .headerPanels {
+        justify-content: flex-start;
+
+        .contentContainer {
+          z-index: 1;
+          h2 {
+            line-height: 7rem;
+            font-size: 4rem;
             margin-bottom: 5rem;
             span {
               font-size: 5rem;
@@ -268,6 +372,7 @@
             display: flex;
             flex-wrap: nowrap;
             justify-content: space-between;
+            padding-top: 1rem;
             bottom: 0;
             width: 90vw;
 
@@ -295,14 +400,22 @@
         .imageContainer {
           position: absolute;
           width: 40%;
-          right: -10rem;
+          right: 0rem;
           top: 10rem;
           min-width: 25rem;
           max-width: 25rem;
           margin: 2rem 0;
 
+          .skaterImage {
+            position: relative;
+            right: -10rem;
+          }
+
           &::before {
+            position: absolute;
             bottom: 0rem;
+            left: 10rem;
+
           }
         }
       }
