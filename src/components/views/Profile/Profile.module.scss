@@ -1,0 +1,118 @@
+@import "../../../styles/settings.scss";
+@import "../../../styles/global.scss";
+
+.root {
+  position: relative;
+  width: 100%;
+  padding: 5rem 5rem;
+  max-width: 1720px;
+  margin: 0 auto;
+  padding-top: $navHeight;
+
+  .profileContainer {
+    display: flex;
+    padding: 5rem 4rem;
+    text-align: center;
+    .list {
+      width: 20%;
+      padding: 2rem;
+      border-right: 0.1rem solid rgb(222, 222, 222);
+
+      .logout {
+        padding: 1rem;
+        margin-top: 5rem;
+        padding: 1rem 2rem;
+        width: 15rem;
+        background-color: #26292c;
+        border-radius: 0.5rem;
+        border: 0.1rem solid #000000;
+        color: white;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+      ul {
+        list-style: none;
+
+        li {
+          position: relative;
+          text-align: center;
+          padding: 0 0.5rem;
+          margin: 2rem;
+          font-weight: 500;
+          font-size: 2rem;
+          cursor: pointer;
+
+          &.active {
+            font-weight: bold;
+          }
+
+          &::after {
+            content: "";
+            position: absolute;
+            bottom: -0.3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 0;
+            width: 60%;
+            background-color: black;
+            transition: 0.1s;
+          }
+
+          &:hover::after {
+            height: 0.3rem;
+          }
+        }
+      }
+    }
+    .panels {
+      width: 80%;
+
+      .panel {
+        display: flex;
+        flex-wrap: wrap;
+        height: 100%;
+
+        .image {
+          position: relative;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 50%;
+          height: 100%;
+          img {
+            border-radius: 50%;
+            width: 15rem;
+          }
+
+          .nickname {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%);
+            bottom: 3rem;
+            font-size: 2rem;
+          }
+        }
+
+        .profile {
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
+          flex-direction: column;
+          width: 50%;
+          p {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+          }
+        }
+      }
+    }
+  }
+}
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
+  font-size: 5rem;
+}

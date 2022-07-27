@@ -9,6 +9,7 @@ import {
   faHeart,
   faSearch,
   faTimes,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -69,8 +70,9 @@ const MainLayout = ({ children }) => {
     }
   };
 
+
   return (
-    <div className={styles.root}>
+    <div className={styles.mainLayoutRoot}>
       <nav className={styles.navigation}>
         <div className={styles.navContainer}>
           <TopBar />
@@ -174,6 +176,11 @@ const MainLayout = ({ children }) => {
                 )}
               </form>
               <ul>
+                <li>
+                  <a href="/account" className={styles.login}>
+                    <FontAwesomeIcon className={styles.Icon} icon={faUser} />
+                  </a>
+                </li>
                 <li>
                   <NavLink to="/">
                     <FontAwesomeIcon className={styles.Icon} icon={faHeart} />

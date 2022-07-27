@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,6 +10,7 @@ import {
 } from "../../../redux/cartRedux";
 import styles from "./OrderForm.module.scss";
 import clsx from "clsx";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const OrderForm = ({ orderRequest }) => {
   const [name, setName] = useState("");
@@ -42,6 +43,8 @@ const OrderForm = ({ orderRequest }) => {
 
   const subtotal = useSelector(getSubtotalPrice);
   const freeDeliveryPrice = useSelector(getFreeDeliveryPrice);
+  const { user, getAccessTokenSilently } = useAuth0();
+  const [userMetadata, setUserMetadata] = useState(null);
 
   const clearState = () => {
     setName("");
@@ -69,6 +72,7 @@ const OrderForm = ({ orderRequest }) => {
         surname,
         email,
         phone,
+        userId: user.sub,
       },
       shipmentInformations: {
         shipmentName,
@@ -91,6 +95,8 @@ const OrderForm = ({ orderRequest }) => {
       },
     };
 
+    console.log(order);
+
     if (cartProducts.length !== 0) {
       orderRequest(order);
       dispatch(clearCart());
@@ -101,8 +107,21 @@ const OrderForm = ({ orderRequest }) => {
     }
   };
 
+  const addOrderToUser = () => {
+    getAccessTokenSilently().then((token) => {
+      fetch("http://localhost:8000/api/userManifest", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((json) => console.log(json));
+    });
+  };
+
   return (
     <section className={styles.root}>
+      <button onClick={addOrderToUser}>add order</button>
       <h2>Order informations</h2>
       <form
         onSubmit={handleSubmit(onSubmit)}

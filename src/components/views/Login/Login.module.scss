@@ -1,0 +1,31 @@
+@import "../../../styles/settings.scss";
+@import "../../../styles/global.scss";
+
+.root {
+  width: 60%;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding-top: $navHeight;
+  text-align: center;
+
+  .loginContainer {
+    border: 1px solid #cdcdcd;
+    border-radius: 0.5rem;
+    background-color: #eaebeb;
+    box-shadow: 5px 5px 10px -1px rgba(66, 68, 90, 1);
+    margin-top: 5rem;
+    padding: 5rem;
+
+    button {
+      text-align: center;
+      padding: 1rem 2rem;
+      width: 20rem;
+      background-color: #26292c;
+      border-radius: 0.5rem;
+      border: 0.1rem solid #000000;
+      color: white;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+  }
+}

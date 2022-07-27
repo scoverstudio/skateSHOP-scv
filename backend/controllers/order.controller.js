@@ -13,7 +13,8 @@ exports.getAll = async (req, res) => {
 
 exports.addOrder = async (req, res) => {
   try {
-    const { name, surname, email, phone } = req.body.userInformations;
+    const { name, surname, email, phone, userId } = req.body.userInformations;
+    console.log(userId);
     const {
       shipmentName,
       shipmentSurname,
@@ -53,6 +54,7 @@ exports.addOrder = async (req, res) => {
           surname,
           email,
           phone,
+          userId,
         },
         shipmentInformations: {
           shipmentName,

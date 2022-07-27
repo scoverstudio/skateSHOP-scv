@@ -35,6 +35,11 @@ body {
   }
 }
 
+.root {
+  padding-top: 10.5rem;
+  min-height: calc(100vh - $sectionPadding);
+}
+
 body {
   display: flex;
   flex-direction: column;

@@ -221,8 +221,28 @@
         .imageContainer {
           position: relative;
           width: 40%;
-          min-width: 30rem;
+          min-width: 40rem;
           max-width: 40rem;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 1300px) {
+  .root {
+    .headerContainer {
+      .headerPanels {
+        .contentContainer {
+          .imageContainer {
+            position: absolute;
+            width: 40%;
+            right: 0;
+            top: 15rem;
+            margin: 2rem 0;
+            overflow: hidden;
+            min-width: 40rem;
+            max-width: 40rem;
+          }
         }
       }
     }
@@ -415,7 +435,6 @@
             position: absolute;
             bottom: 0rem;
             left: 10rem;
-
           }
         }
       }
