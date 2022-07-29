@@ -37,10 +37,6 @@ app.get("/profile", requiresAuth(), (req, res) => {
   res.send(JSON.stringify(req.oidc.user));
 });
 
-app.get("/", function (req, res) {
-  res.json({ message: "OK" });
-});
-
 // API error page
 app.use("/api", (req, res) => {
   res.status(404).send({ message: "Not found..." });
