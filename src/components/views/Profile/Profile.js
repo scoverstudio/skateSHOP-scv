@@ -65,7 +65,7 @@ const Profile = () => {
               {orders.map(
                 (order, index) =>
                   order.userInformations.userId === user.sub && (
-                    <div key={index}>{order.userInformations.userId}</div>
+                    <div key={index}>id: {order.userInformations.userId}</div>
                   )
               )}
             </div>

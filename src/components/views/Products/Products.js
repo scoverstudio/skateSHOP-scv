@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "react-alice-carousel/lib/alice-carousel.css";
 import PropTypes from "prop-types";
 
 import styles from "./Products.module.scss";
